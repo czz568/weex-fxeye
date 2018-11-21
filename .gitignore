@@ -1,0 +1,2 @@
+#node包文件太大，不加入版本控制
+/node_modules/
