@@ -25,3 +25,4 @@ Then, you just need to change the `style` tag as: `<style lang="sass"><style>`.
 ## How to create your own template
 
 See [How-to-create-your-own-template](https://github.com/weex-templates/How-to-create-your-own-template).
+
