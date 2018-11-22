@@ -99,7 +99,6 @@ export default {
     background-color: rgba(24,115,185,0.6);
     justify-content: center;
     align-items: center;
-    text-align:center;
   }
   .pencil{
     width: 28px;
