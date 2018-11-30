@@ -80,7 +80,8 @@
 		},
 		created:function(){
 			var self = this;
-			var dataUrl = 'http://192.168.1.100:8081//src/assets/data/nav.json';
+			var curLocation = 'http://192.168.1.14:8081';
+			var dataUrl = curLocation+'/src/assets/data/nav.json';
 			stream.fetch({
 				method:'GET',
 				url:dataUrl,
