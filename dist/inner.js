@@ -2934,7 +2934,7 @@ __vue_styles__.push(__webpack_require__(25)
 __vue_exports__ = __webpack_require__(26)
 
 /* template */
-var __vue_template__ = __webpack_require__(27)
+var __vue_template__ = __webpack_require__(35)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -3061,11 +3061,11 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _bannerScroll = __webpack_require__(28);
+var _bannerScroll = __webpack_require__(27);
 
 var _bannerScroll2 = _interopRequireDefault(_bannerScroll);
 
-var _dealer = __webpack_require__(32);
+var _dealer = __webpack_require__(31);
 
 var _dealer2 = _interopRequireDefault(_dealer);
 
@@ -3146,71 +3146,20 @@ exports.default = {
 
 /***/ }),
 /* 27 */
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('scroller', {
-    staticClass: ["detail-wrapper"]
-  }, [(_vm.marketDetail.imageList) ? _c('bannerScroll', {
-    attrs: {
-      "banLists": _vm.marketDetail.imageList,
-      "bgColor": '#666666'
-    }
-  }) : _vm._e(), _c('div', {
-    staticClass: ["tit-box"]
-  }, [_c('div', {
-    staticClass: ["tit-row1"]
-  }, [_c('text', {
-    staticClass: ["label"],
-    style: {
-      backgroundColor: _vm.marketDetail.content.color
-    }
-  }, [_vm._v(_vm._s(_vm.marketDetail.content.icon))]), _c('text', {
-    staticClass: ["tit-tit"]
-  }, [_vm._v(_vm._s(_vm.marketDetail.content.title))])]), _c('text', {
-    staticClass: ["tit-row2"]
-  }, [_vm._v(_vm._s(_vm.marketDetail.content.descript))])]), _c('div', {
-    staticClass: ["con-box"]
-  }, _vm._l((_vm.marketDetail.content.character), function(value, key, index) {
-    return _c('div', {
-      key: index,
-      staticClass: ["row"]
-    }, [_c('text', {
-      staticClass: ["txt1"]
-    }, [_vm._v(_vm._s(key) + "：")]), _c('text', {
-      class: ['txt2', {
-        'red': key == '外佣',
-        'more-tx': key == '商品说明'
-      }]
-    }, [_vm._v(_vm._s(value))])])
-  })), _c('div', {
-    staticClass: ["dealer-box"]
-  }, [_c('text', {
-    staticClass: ["dealer-b"]
-  }, [_vm._v("交易商信息")]), _c('dealer', {
-    attrs: {
-      "dealers": _vm.marketDetail.dealers
-    }
-  })], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-
-/***/ }),
-/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
 /* styles */
-__vue_styles__.push(__webpack_require__(29)
+__vue_styles__.push(__webpack_require__(28)
 )
 
 /* script */
-__vue_exports__ = __webpack_require__(30)
+__vue_exports__ = __webpack_require__(29)
 
 /* template */
-var __vue_template__ = __webpack_require__(31)
+var __vue_template__ = __webpack_require__(30)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -3240,7 +3189,7 @@ module.exports = __vue_exports__
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -3292,7 +3241,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3374,7 +3323,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3411,21 +3360,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = []
 
 /* styles */
-__vue_styles__.push(__webpack_require__(33)
+__vue_styles__.push(__webpack_require__(32)
 )
 
 /* script */
-__vue_exports__ = __webpack_require__(34)
+__vue_exports__ = __webpack_require__(33)
 
 /* template */
-var __vue_template__ = __webpack_require__(35)
+var __vue_template__ = __webpack_require__(34)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -3455,7 +3404,7 @@ module.exports = __vue_exports__
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -3542,7 +3491,7 @@ module.exports = {
 }
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3652,7 +3601,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3688,6 +3637,57 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: ["info"]
     }, [_vm._v(_vm._s(value.descript))])])])])
   }))
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('scroller', {
+    staticClass: ["detail-wrapper"]
+  }, [(_vm.marketDetail.imageList) ? _c('bannerScroll', {
+    attrs: {
+      "banLists": _vm.marketDetail.imageList,
+      "bgColor": '#666666'
+    }
+  }) : _vm._e(), _c('div', {
+    staticClass: ["tit-box"]
+  }, [_c('div', {
+    staticClass: ["tit-row1"]
+  }, [_c('text', {
+    staticClass: ["label"],
+    style: {
+      backgroundColor: _vm.marketDetail.content.color
+    }
+  }, [_vm._v(_vm._s(_vm.marketDetail.content.icon))]), _c('text', {
+    staticClass: ["tit-tit"]
+  }, [_vm._v(_vm._s(_vm.marketDetail.content.title))])]), _c('text', {
+    staticClass: ["tit-row2"]
+  }, [_vm._v(_vm._s(_vm.marketDetail.content.descript))])]), _c('div', {
+    staticClass: ["con-box"]
+  }, _vm._l((_vm.marketDetail.content.character), function(value, key, index) {
+    return _c('div', {
+      key: index,
+      staticClass: ["row"]
+    }, [_c('text', {
+      staticClass: ["txt1"]
+    }, [_vm._v(_vm._s(key) + "：")]), _c('text', {
+      class: ['txt2', {
+        'red': key == '外佣',
+        'more-tx': key == '商品说明'
+      }]
+    }, [_vm._v(_vm._s(value))])])
+  })), _c('div', {
+    staticClass: ["dealer-box"]
+  }, [_c('text', {
+    staticClass: ["dealer-b"]
+  }, [_vm._v("交易商信息")]), _c('dealer', {
+    attrs: {
+      "dealers": _vm.marketDetail.dealers
+    }
+  })], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 

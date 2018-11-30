@@ -3,7 +3,7 @@
         <slider class="slider" interval="3000" auto-play="true">
             <div class="frame" :style="{backgroundColor:bgColor}" v-for="(item, index) in banLists" :key="index" >
                 <image class="image" resize="contain" :src="item"></image>
-                <text class="index">{{index+1}}</text>
+				<text class="index">{{index+1}}</text>
             </div>
         </slider>
         <div class="num-box"><text class="nums">/{{banLists.length}}</text></div>

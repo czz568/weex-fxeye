@@ -3332,7 +3332,8 @@ module.exports = {
     "borderRadius": "30",
     "backgroundColor": "rgba(24,115,185,0.6)",
     "justifyContent": "center",
-    "alignItems": "center"
+    "alignItems": "center",
+    "textAlign": "center"
   },
   "pencil": {
     "width": "28",
