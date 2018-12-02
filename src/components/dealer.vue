@@ -32,17 +32,18 @@
 	}
 	.item1{
 		margin-right: 20px;
-		width: 200px;
-		height: 112px;
 		border-width: 1px;
 		border-color: #e5e5e5;
 		border-style: solid;
 		position: relative;
         overflow: hidden;
+        justify-content: center;
+        align-items: center;
 	}
 	.logo-pic{
-		width: 198px;
-		height: 110px;
+		width: 196px;
+		height: 108px;
+		resize: contain;
 	}
 	.supervise{
 		position: absolute;

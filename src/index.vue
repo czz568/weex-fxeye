@@ -1,24 +1,20 @@
 <template>
-
-  <div class="wrapper">
-
-    <scroller class="mian-scroller">
-      <refresh @refresh="onrefresh" class="refresh" :display="refreshing ? 'show' : 'hide'">
-        <loading-indicator class="indicator"></loading-indicator>
-        <text class="indicator-text">{{refreshtext}}</text>
-      </refresh>
-      <topnav></topnav>
-      <marketlist></marketlist>
-      <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
-        <loading-indicator class="indicator"></loading-indicator>
-        <text class="indicator-text">{{loadingtext}}</text>
-      </loading>
-    </scroller>
-    <router-view></router-view>
-    <div class="pencil-box">
-      <image class="pencil" src="http://192.168.1.14:8081/src/assets/images/icon_write.png"></image>
+    <div class="wrapper">
+        <router-view></router-view>
+        <scroller class="mian-scroller">
+            <refresh @refresh="onrefresh" class="refresh" :display="refreshing ? 'show' : 'hide'">
+                <loading-indicator class="indicator"></loading-indicator>
+                    <text class="indicator-text">释放即可刷新</text>
+            </refresh>
+            <topnav></topnav>
+            <marketlist></marketlist>
+            <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
+                <loading-indicator class="indicator"></loading-indicator>
+                    <text class="indicator-text">释放即可加载</text>
+            </loading>
+        </scroller>
+        
     </div>
-  </div>
 </template>
 
 <script>
@@ -34,9 +30,7 @@ export default {
   data () {
     return {
       refreshing: false,
-      refreshtext:'释放即可刷新',
-      loadinging:false,
-      loadingtext:'释放立即加载'
+      loadinging:false
     }
   },
   methods:{
@@ -70,6 +64,7 @@ export default {
     flex-direction: row;
     justify-content:center;
     align-items:center;
+    background-color: #fff;
   }
   .loading{
     width: 750px;

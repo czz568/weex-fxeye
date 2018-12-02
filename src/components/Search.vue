@@ -3,16 +3,16 @@
 	  <div class="search-wrapper">
 	  	<text class="page-name">天眼集市</text>
 	  	<div class="input-box">
-	  		<image class="btn-search" src="http://192.168.1.14:8081/src/assets/images/icon_search.png"></image>
+	  		<image class="btn-search" src="http://192.168.1.102:8081/src/assets/images/icon_search.png"></image>
 	  		<input class="input-txt" placeholder="外贸届的58同城" type="text" disabled="false" >
 	  	</div>
 	  	<div class="publish-box">
-	  		<image class="btn-write" src="http://192.168.1.14:8081/src/assets/images/icon_write.png"></image>
+	  		<image class="btn-write" src="http://192.168.1.102:8081/src/assets/images/icon_write.png"></image>
 	  		<text class="publish-txt">发布</text>
 	  	</div>
 	  </div>
 	  <div class="pencil-box">
-	    <image class="pencil" src="http://192.168.1.14:8081/src/assets/images/icon_write.png"></image>
+	    <image class="pencil" src="http://192.168.1.102:8081/src/assets/images/icon_write.png"></image>
 	  </div>
 	</div>
 </template>

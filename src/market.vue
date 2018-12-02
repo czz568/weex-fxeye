@@ -13,9 +13,8 @@
 		    <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
 		        <loading-indicator class="indicator"></loading-indicator>
 		        <text class="indicator-text">释放加载更多</text>
-		      </loading>
+		    </loading>
 		</scroller>
-		
 	</div>
 </template>
 <script>
@@ -57,14 +56,11 @@
 <style scoped>
 	.market-wrapper{
 		width:750px;
-		margin-top: 78px;
+		padding-top: 78px;
 	}
   	.refresh {
 	    width: 750px;
 	    height: 100px;
-	    display: -ms-flex;
-	    display: -webkit-flex;
-	    display: flex;
 	    flex-direction: row;
 	    justify-content:center;
 	    align-items:center;
@@ -72,9 +68,6 @@
   	.loading{
 	    width: 750px;
 	    height: 100px;
-	    display: -ms-flex;
-	    display: -webkit-flex;
-	    display: flex;
 	    flex-direction: row;
 	    justify-content:center;
 	    align-items:center;

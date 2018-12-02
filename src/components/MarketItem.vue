@@ -11,11 +11,11 @@
 				<div class="user">
 					<image class="photo" :src="item.photo"></image>
 					<text class="name">{{item.nickname}}</text>
-					<div class="icon-pic" v-if="item.isvip"><image class="icon-img" src="http://192.168.1.14:8081/src/assets/images/icon_vip.png"></image></div>
+					<div class="icon-pic" v-if="item.isvip"><image class="icon-img" src="http://192.168.1.102:8081/src/assets/images/icon_vip.png"></image></div>
 					<text class="job">{{item.identity}}</text>
-					<div class="icon-pic" v-if="item.isphone"><image class="icon-img" src="http://192.168.1.14:8081/src/assets/images/icon_phone.png"></image></div>
-					<div class="icon-pic" v-if="item.iswechat"><image class="icon-img" src="http://192.168.1.14:8081/src/assets/images/icon_wechat.png"></image></div>
-					<div class="icon-pic" v-if="item.isqq"><image class="icon-img" src="http://192.168.1.14:8081/src/assets/images/icon_qq.png"></image></div>
+					<div class="icon-pic" v-if="item.isphone"><image class="icon-img" src="http://192.168.1.102:8081/src/assets/images/icon_phone.png"></image></div>
+					<div class="icon-pic" v-if="item.iswechat"><image class="icon-img" src="http://192.168.1.102:8081/src/assets/images/icon_wechat.png"></image></div>
+					<div class="icon-pic" v-if="item.isqq"><image class="icon-img" src="http://192.168.1.102:8081/src/assets/images/icon_qq.png"></image></div>
 					
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 		},
 		created:function(){
 			var self = this;
-			var curLocation = 'http://192.168.1.14:8081';
+			var curLocation = 'http://192.168.1.102:8081';
 			var marketUrl = curLocation+'/src/assets/data/marketlist.json';
 			stream.fetch({
 				method:'GET',
