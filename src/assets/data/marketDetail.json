@@ -1,0 +1,40 @@
+{
+    "content":{
+        "title":"百利好，诚招个人和公司代理",
+        "icon":"IB",
+        "color":"#ebad1d",
+        "descript":"136****4447 | 2018年11月30日 16:19",
+        "character":{
+            "EA交易":"支持",
+            "外佣":"支持(0-200美金)",
+            "返佣手续费":"支持(0-200美金)",
+            "返佣周期":"日结",
+            "商品说明":"支持刷单秒单，佣金日返，出入金无障，提供跟单社区，和搭建平台 支付通道。"
+        }
+    },
+    "imageList":[
+        "http://eimgmarket.fxeye.com/market/2018145154364701/FXM2018145154364701_273081.jpg_tyjs-pic","http://eimgmarket.fxeye.com/market/2018145754189664/FXM2018145754189664_439487.jpg_tyjs-pic","http://eimgmarket.fxeye.com/market/2018149054577498/FXM2018149054577498_324929.jpg_tyjs-pic"
+    ],
+    "dealers":[
+        {
+            "link":"http://m.fxeye.com/jys/index.html?tradercode=9381389071",
+            "logo":"http://eimgjys.fxeye.com/logo/0001460706/FXT_0001460706_400x226.png_fxeye-template-global",
+            "status":"监管中",
+            "bgColor":"#7fb759",
+            "score":"4.98",
+            "name":"ORIGIN ECN",
+            "descript":"10-15年 | 澳大利亚监管 | 投资咨询"
+        },
+        {
+            "link":"http://m.fxeye.com/jys/index.html?tradercode=7281559577",
+            "logo":"http://eimgjys.fxeye.com/logo/7281559577/FXT7281559577_892638.png_fxeye-template-global",
+            "status":"疑似套牌",
+            "bgColor":"#E45950",
+            "score":"1.64",
+            "name":"NCY恩圣威",
+            "descript":"1年内 | 监管牌照存疑 | 白标MT4/5"
+        }
+    ]
+    
+
+}

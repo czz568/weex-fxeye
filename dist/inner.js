@@ -89,7 +89,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "E:\\fxeye-app\\src\\components\\Search.vue"
+__vue_options__.__file = "G:\\github\\weex-fxeye\\src\\components\\Search.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__._scopeId = "data-v-d9499c90"
@@ -140,9 +140,9 @@ module.exports = new _vueRouter2.default({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/**
-  * vue-router v3.0.1
-  * (c) 2017 Evan You
+/*!
+  * vue-router v3.0.2
+  * (c) 2018 Evan You
   * @license MIT
   */
 /*  */
@@ -163,8 +163,15 @@ function isError (err) {
   return Object.prototype.toString.call(err).indexOf('Error') > -1
 }
 
+function extend (a, b) {
+  for (var key in b) {
+    a[key] = b[key];
+  }
+  return a
+}
+
 var View = {
-  name: 'router-view',
+  name: 'RouterView',
   functional: true,
   props: {
     name: {
@@ -178,6 +185,7 @@ var View = {
     var parent = ref.parent;
     var data = ref.data;
 
+    // used by devtools to display a router-view badge
     data.routerView = true;
 
     // directly use parent context's createElement() function
@@ -252,7 +260,7 @@ var View = {
 
     return h(component, data, children)
   }
-};
+}
 
 function resolveProps (route, config) {
   switch (typeof config) {
@@ -273,13 +281,6 @@ function resolveProps (route, config) {
         );
       }
   }
-}
-
-function extend (to, from) {
-  for (var key in from) {
-    to[key] = from[key];
-  }
-  return to
 }
 
 /*  */
@@ -379,7 +380,6 @@ function stringifyQuery (obj) {
 }
 
 /*  */
-
 
 var trailingSlashRE = /\/?$/;
 
@@ -523,7 +523,7 @@ var toTypes = [String, Object];
 var eventTypes = [String, Array];
 
 var Link = {
-  name: 'router-link',
+  name: 'RouterLink',
   props: {
     to: {
       type: toTypes,
@@ -558,17 +558,17 @@ var Link = {
     var globalExactActiveClass = router.options.linkExactActiveClass;
     // Support global empty active class
     var activeClassFallback = globalActiveClass == null
-            ? 'router-link-active'
-            : globalActiveClass;
+      ? 'router-link-active'
+      : globalActiveClass;
     var exactActiveClassFallback = globalExactActiveClass == null
-            ? 'router-link-exact-active'
-            : globalExactActiveClass;
+      ? 'router-link-exact-active'
+      : globalExactActiveClass;
     var activeClass = this.activeClass == null
-            ? activeClassFallback
-            : this.activeClass;
+      ? activeClassFallback
+      : this.activeClass;
     var exactActiveClass = this.exactActiveClass == null
-            ? exactActiveClassFallback
-            : this.exactActiveClass;
+      ? exactActiveClassFallback
+      : this.exactActiveClass;
     var compareTarget = location.path
       ? createRoute(null, location, null, router)
       : route;
@@ -608,7 +608,6 @@ var Link = {
       if (a) {
         // in case the <a> is a static node
         a.isStatic = false;
-        var extend = _Vue.util.extend;
         var aData = a.data = extend({}, a.data);
         aData.on = on;
         var aAttrs = a.data.attrs = extend({}, a.data.attrs);
@@ -621,7 +620,7 @@ var Link = {
 
     return h(this.tag, data, this.$slots.default)
   }
-};
+}
 
 function guardEvent (e) {
   // don't redirect with control keys
@@ -699,8 +698,8 @@ function install (Vue) {
     get: function get () { return this._routerRoot._route }
   });
 
-  Vue.component('router-view', View);
-  Vue.component('router-link', Link);
+  Vue.component('RouterView', View);
+  Vue.component('RouterLink', Link);
 
   var strats = Vue.config.optionMergeStrategies;
   // use the same hook merging strategy for route hooks
@@ -1210,7 +1209,6 @@ function pathToRegexp (path, keys, options) {
 
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
-
 pathToRegexp_1.parse = parse_1;
 pathToRegexp_1.compile = compile_1;
 pathToRegexp_1.tokensToFunction = tokensToFunction_1;
@@ -1406,7 +1404,6 @@ function normalizePath (path, parent, strict) {
 
 /*  */
 
-
 function normalizeLocation (
   raw,
   current,
@@ -1421,9 +1418,9 @@ function normalizeLocation (
 
   // relative params
   if (!next.path && next.params && current) {
-    next = assign({}, next);
+    next = extend({}, next);
     next._normalized = true;
-    var params = assign(assign({}, current.params), next.params);
+    var params = extend(extend({}, current.params), next.params);
     if (current.name) {
       next.name = current.name;
       next.params = params;
@@ -1461,14 +1458,8 @@ function normalizeLocation (
   }
 }
 
-function assign (a, b) {
-  for (var key in b) {
-    a[key] = b[key];
-  }
-  return a
-}
-
 /*  */
+
 
 
 function createMatcher (
@@ -1538,8 +1529,8 @@ function createMatcher (
   ) {
     var originalRedirect = record.redirect;
     var redirect = typeof originalRedirect === 'function'
-        ? originalRedirect(createRoute(record, location, null, router))
-        : originalRedirect;
+      ? originalRedirect(createRoute(record, location, null, router))
+      : originalRedirect;
 
     if (typeof redirect === 'string') {
       redirect = { path: redirect };
@@ -1653,7 +1644,8 @@ function matchRoute (
     var key = regex.keys[i - 1];
     var val = typeof m[i] === 'string' ? decodeURIComponent(m[i]) : m[i];
     if (key) {
-      params[key.name] = val;
+      // Fix #1994: using * with props: true generates a param named 0
+      params[key.name || 'pathMatch'] = val;
     }
   }
 
@@ -1666,12 +1658,12 @@ function resolveRecordPath (path, record) {
 
 /*  */
 
-
 var positionStore = Object.create(null);
 
 function setupScroll () {
   // Fix for #1585 for Firefox
-  window.history.replaceState({ key: getStateKey() }, '');
+  // Fix for #2195 Add optional third attribute to workaround a bug in safari https://bugs.webkit.org/show_bug.cgi?id=182678
+  window.history.replaceState({ key: getStateKey() }, '', window.location.href.replace(window.location.origin, ''));
   window.addEventListener('popstate', function (e) {
     saveScrollPosition();
     if (e.state && e.state.key) {
@@ -1702,7 +1694,7 @@ function handleScroll (
   // wait until re-render finishes before scrolling
   router.app.$nextTick(function () {
     var position = getScrollPosition();
-    var shouldScroll = behavior(to, from, isPop ? position : null);
+    var shouldScroll = behavior.call(router, to, from, isPop ? position : null);
 
     if (!shouldScroll) {
       return
@@ -2264,7 +2256,10 @@ function poll (
   key,
   isValid
 ) {
-  if (instances[key]) {
+  if (
+    instances[key] &&
+    !instances[key]._isBeingDestroyed // do not reuse being destroyed instance
+  ) {
     cb(instances[key]);
   } else if (isValid()) {
     setTimeout(function () {
@@ -2275,7 +2270,6 @@ function poll (
 
 /*  */
 
-
 var HTML5History = (function (History$$1) {
   function HTML5History (router, base) {
     var this$1 = this;
@@ -2283,8 +2277,9 @@ var HTML5History = (function (History$$1) {
     History$$1.call(this, router, base);
 
     var expectScroll = router.options.scrollBehavior;
+    var supportsScroll = supportsPushState && expectScroll;
 
-    if (expectScroll) {
+    if (supportsScroll) {
       setupScroll();
     }
 
@@ -2300,7 +2295,7 @@ var HTML5History = (function (History$$1) {
       }
 
       this$1.transitionTo(location, function (route) {
-        if (expectScroll) {
+        if (supportsScroll) {
           handleScroll(router, route, current, true);
         }
       });
@@ -2354,7 +2349,7 @@ var HTML5History = (function (History$$1) {
 }(History));
 
 function getLocation (base) {
-  var path = window.location.pathname;
+  var path = decodeURI(window.location.pathname);
   if (base && path.indexOf(base) === 0) {
     path = path.slice(base.length);
   }
@@ -2362,7 +2357,6 @@ function getLocation (base) {
 }
 
 /*  */
-
 
 var HashHistory = (function (History$$1) {
   function HashHistory (router, base, fallback) {
@@ -2473,7 +2467,7 @@ function getHash () {
   // consistent across browsers - Firefox will pre-decode it!
   var href = window.location.href;
   var index = href.indexOf('#');
-  return index === -1 ? '' : href.slice(index + 1)
+  return index === -1 ? '' : decodeURI(href.slice(index + 1))
 }
 
 function getUrl (path) {
@@ -2500,7 +2494,6 @@ function replaceHash (path) {
 }
 
 /*  */
-
 
 var AbstractHistory = (function (History$$1) {
   function AbstractHistory (router, base) {
@@ -2559,6 +2552,8 @@ var AbstractHistory = (function (History$$1) {
 }(History));
 
 /*  */
+
+
 
 var VueRouter = function VueRouter (options) {
   if ( options === void 0 ) options = {};
@@ -2756,7 +2751,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.0.1';
+VueRouter.version = '3.0.2';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -2861,7 +2856,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('image', {
     staticClass: ["btn-search"],
     attrs: {
-      "src": "http://192.168.1.100:8081/src/assets/images/icon_search.png"
+      "src": "http://192.168.1.14:8081/src/assets/images/icon_search.png"
     }
   }), _c('input', {
     staticClass: ["input-txt"],
@@ -2875,7 +2870,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('image', {
     staticClass: ["btn-write"],
     attrs: {
-      "src": "http://192.168.1.100:8081/src/assets/images/icon_write.png"
+      "src": "http://192.168.1.14:8081/src/assets/images/icon_write.png"
     }
   }), _c('text', {
     staticClass: ["publish-txt"]
@@ -2884,357 +2879,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('image', {
     staticClass: ["pencil"],
     attrs: {
-      "src": "http://192.168.1.100:8081/src/assets/images/icon_write.png"
+      "src": "http://192.168.1.14:8081/src/assets/images/icon_write.png"
     }
   })])])
 }]}
 module.exports.render._withStripped = true
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* styles */
-__vue_styles__.push(__webpack_require__(6)
-)
-
-/* script */
-__vue_exports__ = __webpack_require__(7)
-
-/* template */
-var __vue_template__ = __webpack_require__(8)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "E:\\fxeye-app\\src\\components\\MarketItem.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-3c85cc02"
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = {
-  "list-box": {
-    "width": "750",
-    "paddingTop": "20",
-    "backgroundColor": "#f5f5f5"
-  },
-  "list-item": {
-    "width": "750",
-    "flexDirection": "row",
-    "paddingTop": "25",
-    "paddingRight": "30",
-    "paddingBottom": "30",
-    "paddingLeft": "30",
-    "justifyContent": "space-between",
-    "marginBottom": "20",
-    "backgroundColor": "#ffffff"
-  },
-  "item-l": {
-    "flex": 1,
-    "marginRight": "25"
-  },
-  "title-box": {
-    "flexDirection": "row",
-    "marginBottom": "10"
-  },
-  "label": {
-    "borderRadius": "5",
-    "paddingLeft": "8",
-    "paddingRight": "8",
-    "height": "33",
-    "lineHeight": "33",
-    "marginRight": "12",
-    "fontSize": "27",
-    "backgroundColor": "#f7842f",
-    "color": "#ffffff",
-    "marginTop": "2",
-    "justifyContent": "center"
-  },
-  "title-txt": {
-    "fontSize": "29",
-    "color": "#333333",
-    "flex": 1,
-    "height": "72"
-  },
-  "text": {
-    "marginBottom": "2",
-    "flexDirection": "row"
-  },
-  "price": {
-    "color": "#666666",
-    "fontSize": "26"
-  },
-  "red": {
-    "color": "#fc341a",
-    "fontSize": "26"
-  },
-  "user": {
-    "flexDirection": "row",
-    "paddingTop": "20",
-    "alignItems": "center",
-    "height": "45"
-  },
-  "photo": {
-    "width": "25",
-    "height": "25",
-    "borderRadius": "13",
-    "marginRight": "8"
-  },
-  "name": {
-    "fontSize": "26",
-    "color": "#666666",
-    "marginRight": "12"
-  },
-  "job": {
-    "color": "#47a6ef",
-    "paddingLeft": "8",
-    "paddingRight": "8",
-    "borderWidth": "1",
-    "borderStyle": "solid",
-    "borderColor": "#47a6ef",
-    "borderRadius": "3",
-    "fontSize": "19",
-    "marginRight": "8",
-    "textAlign": "center"
-  },
-  "icon-pic": {
-    "width": "25",
-    "height": "25",
-    "marginRight": "8"
-  },
-  "icon-img": {
-    "width": "25",
-    "height": "25"
-  },
-  "item-r": {
-    "width": "179"
-  },
-  "poster": {
-    "width": "179",
-    "height": "134",
-    "marginBottom": "24"
-  },
-  "time": {
-    "fontSize": "19",
-    "color": "#999999",
-    "textAlign": "right"
-  }
-}
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var stream = weex.requireModule('stream');
-var modal = weex.requireModule('modal');
-var navigator = weex.requireModule('navigator');
-module.exports = {
-	data: function data() {
-		return {
-			marketLists: null
-		};
-	},
-	methods: {
-		jump: function jump(event) {
-			navigator.push({
-				url: this.getJumpBaseUrl('inner'), animated: "true"
-			});
-		},
-		getJumpBaseUrl: function getJumpBaseUrl(toUrl) {
-			var bundleUrl = weex.config.bundleUrl;
-			bundleUrl = new String(bundleUrl);
-			var nativeBase;
-			var native;
-			if (WXEnvironment.platform.toLowerCase() === 'ios') {
-				modal.toast({ message: WXEnvironment.platform, duration: 10 });
-				nativeBase = 'file://assets/dist/';
-				native = nativeBase + toUrl + ".js";
-			} else if (WXEnvironment.platform.toLowerCase() === 'android') {
-				nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
-				native = nativeBase + toUrl + ".js";
-			} else {
-				var host = 'localhost:8081';
-				var matches = /\/\/([^\/]+?)\//.exec(bundleUrl);
-				if (matches && matches.length >= 2) {
-					host = matches[1];
-				}
-				if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object') {
-					nativeBase = 'http://' + host + '/';
-				} else {
-					nativeBase = 'http://' + host + '/';
-				}
-
-				native = nativeBase + toUrl + ".html";
-			}
-			return native;
-		}
-	},
-	created: function created() {
-		var self = this;
-		var marketUrl = 'http://192.168.1.100:8081/src/assets/data/marketlist.json';
-		stream.fetch({
-			method: 'GET',
-			url: marketUrl,
-			type: 'json'
-		}, function (ret) {
-			if (!ret.ok) {
-				modal.toast({ message: '加载失败', duration: 1 });
-			} else {
-				self.marketLists = ret.data;
-			}
-		});
-	}
-};
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: ["list-box"]
-  }, _vm._l((_vm.marketLists), function(item, index) {
-    return _c('div', {
-      key: index,
-      staticClass: ["list-item"],
-      on: {
-        "click": _vm.jump
-      }
-    }, [_c('div', {
-      staticClass: ["item-l"]
-    }, [_c('div', {
-      staticClass: ["title-box"]
-    }, [_c('text', {
-      staticClass: ["label"],
-      style: {
-        backgroundColor: item.bgcolor
-      }
-    }, [_vm._v(_vm._s(item.label))]), _c('text', {
-      staticClass: ["title-txt"]
-    }, [_vm._v(_vm._s(item.title))])]), _c('div', {
-      staticClass: ["text"]
-    }, [_c('text', {
-      staticClass: ["price"]
-    }, [_vm._v("监管国家：" + _vm._s(item.country))])]), _c('div', {
-      staticClass: ["text"]
-    }, [_c('text', {
-      staticClass: ["price"]
-    }, [_vm._v("出售价格：")]), _c('text', {
-      staticClass: ["red"]
-    }, [_vm._v(_vm._s(item.salary))])]), _c('div', {
-      staticClass: ["user"]
-    }, [_c('image', {
-      staticClass: ["photo"],
-      attrs: {
-        "src": item.photo
-      }
-    }), _c('text', {
-      staticClass: ["name"]
-    }, [_vm._v(_vm._s(item.nickname))]), (item.isvip) ? _c('div', {
-      staticClass: ["icon-pic"]
-    }, [_c('image', {
-      staticClass: ["icon-img"],
-      attrs: {
-        "src": "http://192.168.1.100:8081/src/assets/images/icon_vip.png"
-      }
-    })]) : _vm._e(), _c('text', {
-      staticClass: ["job"]
-    }, [_vm._v(_vm._s(item.identity))]), (item.isphone) ? _c('div', {
-      staticClass: ["icon-pic"]
-    }, [_c('image', {
-      staticClass: ["icon-img"],
-      attrs: {
-        "src": "http://192.168.1.100:8081/src/assets/images/icon_phone.png"
-      }
-    })]) : _vm._e(), (item.iswechat) ? _c('div', {
-      staticClass: ["icon-pic"]
-    }, [_c('image', {
-      staticClass: ["icon-img"],
-      attrs: {
-        "src": "http://192.168.1.100:8081/src/assets/images/icon_wechat.png"
-      }
-    })]) : _vm._e(), (item.isqq) ? _c('div', {
-      staticClass: ["icon-pic"]
-    }, [_c('image', {
-      staticClass: ["icon-img"],
-      attrs: {
-        "src": "http://192.168.1.100:8081/src/assets/images/icon_qq.png"
-      }
-    })]) : _vm._e()])]), _c('div', {
-      staticClass: ["item-r"]
-    }, [_c('image', {
-      staticClass: ["poster"],
-      attrs: {
-        "src": item.poster
-      }
-    }), _c('text', {
-      staticClass: ["time"]
-    }, [_vm._v(_vm._s(item.time))])])])
-  }))
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-
-/***/ }),
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
 /* 9 */,
 /* 10 */,
 /* 11 */,
@@ -3279,7 +2934,7 @@ __vue_styles__.push(__webpack_require__(25)
 __vue_exports__ = __webpack_require__(26)
 
 /* template */
-var __vue_template__ = __webpack_require__(27)
+var __vue_template__ = __webpack_require__(35)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -3291,7 +2946,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "E:\\fxeye-app\\src\\inner.vue"
+__vue_options__.__file = "G:\\github\\weex-fxeye\\src\\inner.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__._scopeId = "data-v-2af751c0"
@@ -3315,52 +2970,6 @@ module.exports = __vue_exports__
 module.exports = {
   "detail-wrapper": {
     "width": "750"
-  },
-  "slid-box": {
-    "width": "750",
-    "height": "372",
-    "position": "relative"
-  },
-  "slider": {
-    "width": "750",
-    "height": "372"
-  },
-  "frame": {
-    "width": "750",
-    "height": "372",
-    "position": "relative",
-    "backgroundColor": "#999999"
-  },
-  "image": {
-    "width": "750",
-    "height": "392"
-  },
-  "num-box": {
-    "position": "absolute",
-    "width": "74",
-    "height": "28",
-    "flexDirection": "row",
-    "justifyContent": "flex-end",
-    "right": "30",
-    "bottom": "20",
-    "backgroundColor": "rgba(0,0,0,0.3)",
-    "borderRadius": "14",
-    "paddingRight": "20"
-  },
-  "nums": {
-    "fontSize": "18",
-    "color": "#ffffff",
-    "height": "28",
-    "lineHeight": "28"
-  },
-  "index": {
-    "fontSize": "22",
-    "color": "#ffffff",
-    "position": "absolute",
-    "bottom": "20",
-    "right": "70",
-    "height": "28",
-    "lineHeight": "28"
   },
   "tit-box": {
     "paddingTop": "25",
@@ -3438,6 +3047,369 @@ module.exports = {
     "lineHeight": "30",
     "fontSize": "28",
     "color": "#333333"
+  }
+}
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _bannerScroll = __webpack_require__(27);
+
+var _bannerScroll2 = _interopRequireDefault(_bannerScroll);
+
+var _dealer = __webpack_require__(31);
+
+var _dealer2 = _interopRequireDefault(_dealer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var stream = weex.requireModule("stream");
+var modal = weex.requireModule('modal');
+exports.default = {
+	name: 'App',
+	components: {
+		bannerScroll: _bannerScroll2.default,
+		dealer: _dealer2.default
+	},
+	data: function data() {
+		return {
+			marketDetail: null
+		};
+	},
+
+	methods: {
+		onrefresh: function onrefresh(event) {
+			this.refreshing = true;
+			var self = this;
+			setTimeout(function () {
+				self.refreshing = false;
+				modal.toast({ message: '刷新成功', duration: 1 });
+			}, 1E3);
+		},
+		onloading: function onloading() {
+			this.loadinging = true;
+			var self = this;
+			setTimeout(function () {
+				self.loadinging = false;
+				modal.toast({ message: '加载成功', duration: 1 });
+			}, 1E3);
+		}
+	},
+	created: function created() {
+		var self = this;
+		var curLocation = 'http://192.168.1.14:8081';
+		var detailUrl = curLocation + '/src/assets/data/marketDetail.json';
+		stream.fetch({
+			method: "GET",
+			url: detailUrl,
+			type: "json"
+		}, function (ret) {
+			if (!ret.ok) {
+				modal.toast({ message: "加载失败", duration: 1 });
+			} else {
+				self.marketDetail = ret.data;
+			}
+		});
+	}
+};
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = []
+
+/* styles */
+__vue_styles__.push(__webpack_require__(28)
+)
+
+/* script */
+__vue_exports__ = __webpack_require__(29)
+
+/* template */
+var __vue_template__ = __webpack_require__(30)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "G:\\github\\weex-fxeye\\src\\components\\bannerScroll.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-6466a2ee"
+__vue_options__.style = __vue_options__.style || {}
+__vue_styles__.forEach(function (module) {
+  for (var name in module) {
+    __vue_options__.style[name] = module[name]
+  }
+})
+if (typeof __register_static_styles__ === "function") {
+  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
+}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  "slid-box": {
+    "width": "750",
+    "height": "372",
+    "position": "relative"
+  },
+  "slider": {
+    "width": "750",
+    "height": "372"
+  },
+  "frame": {
+    "width": "750",
+    "height": "372",
+    "position": "relative"
+  },
+  "image": {
+    "width": "750",
+    "height": "392"
+  },
+  "num-box": {
+    "position": "absolute",
+    "width": "74",
+    "height": "28",
+    "flexDirection": "row",
+    "justifyContent": "flex-end",
+    "right": "30",
+    "bottom": "20",
+    "backgroundColor": "rgba(0,0,0,0.3)",
+    "borderRadius": "14",
+    "paddingRight": "20"
+  },
+  "nums": {
+    "fontSize": "18",
+    "color": "#ffffff",
+    "height": "28",
+    "lineHeight": "28"
+  },
+  "index": {
+    "fontSize": "22",
+    "color": "#ffffff",
+    "position": "absolute",
+    "bottom": "20",
+    "right": "70",
+    "height": "28",
+    "lineHeight": "28"
+  }
+}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    props: {
+        banLists: { //ban图片
+            type: [Array, Object]
+        },
+        bgColor: { //自定义背景色
+            type: String,
+            default: "#333333"
+        }
+    }
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: ["slid-box"]
+  }, [_c('slider', {
+    staticClass: ["slider"],
+    attrs: {
+      "interval": "3000",
+      "autoPlay": "true"
+    }
+  }, _vm._l((_vm.banLists), function(item, index) {
+    return _c('div', {
+      key: index,
+      staticClass: ["frame"],
+      style: {
+        backgroundColor: _vm.bgColor
+      }
+    }, [_c('image', {
+      staticClass: ["image"],
+      attrs: {
+        "resize": "contain",
+        "src": item
+      }
+    }), _c('text', {
+      staticClass: ["index"]
+    }, [_vm._v(_vm._s(index + 1))])])
+  })), _c('div', {
+    staticClass: ["num-box"]
+  }, [_c('text', {
+    staticClass: ["nums"]
+  }, [_vm._v("/" + _vm._s(_vm.banLists.length))])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = []
+
+/* styles */
+__vue_styles__.push(__webpack_require__(32)
+)
+
+/* script */
+__vue_exports__ = __webpack_require__(33)
+
+/* template */
+var __vue_template__ = __webpack_require__(34)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "G:\\github\\weex-fxeye\\src\\components\\dealer.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+__vue_options__._scopeId = "data-v-da6624ee"
+__vue_options__.style = __vue_options__.style || {}
+__vue_styles__.forEach(function (module) {
+  for (var name in module) {
+    __vue_options__.style[name] = module[name]
+  }
+})
+if (typeof __register_static_styles__ === "function") {
+  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
+}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  "a-link": {
+    "flexDirection": "row"
   },
   "inner": {
     "flexDirection": "row",
@@ -3457,7 +3429,8 @@ module.exports = {
     "borderWidth": "1",
     "borderColor": "#e5e5e5",
     "borderStyle": "solid",
-    "position": "relative"
+    "position": "relative",
+    "overflow": "hidden"
   },
   "logo-pic": {
     "width": "198",
@@ -3518,267 +3491,204 @@ module.exports = {
 }
 
 /***/ }),
-/* 26 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-var _Search = __webpack_require__(0);
-
-var _Search2 = _interopRequireDefault(_Search);
-
-var _MarketItem = __webpack_require__(5);
-
-var _MarketItem2 = _interopRequireDefault(_MarketItem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var modal = weex.requireModule('modal');
 exports.default = {
-	name: 'App',
-	components: {
-		search: _Search2.default,
-		marketlist: _MarketItem2.default
-	},
-	data: function data() {
-		return {
-			imageList: ["http://eimgmarket.fxeye.com/market/2018145154364701/FXM2018145154364701_273081.jpg_tyjs-pic", "http://eimgmarket.fxeye.com/market/2018145754189664/FXM2018145754189664_439487.jpg_tyjs-pic", "http://eimgmarket.fxeye.com/market/2018149054577498/FXM2018149054577498_324929.jpg_tyjs-pic"],
-			nums: 3
-		};
-	},
-
-	methods: {
-		onrefresh: function onrefresh(event) {
-			this.refreshing = true;
-			var self = this;
-			setTimeout(function () {
-				self.refreshing = false;
-				modal.toast({ message: '刷新成功', duration: 1 });
-			}, 1E3);
-		},
-		onloading: function onloading() {
-			this.loadinging = true;
-			var self = this;
-			setTimeout(function () {
-				self.loadinging = false;
-				modal.toast({ message: '加载成功', duration: 1 });
-			}, 1E3);
-		}
-	}
+    props: {
+        dealers: {
+            Array: Array
+        }
+    }
 };
 
 /***/ }),
-/* 27 */
+/* 34 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', _vm._l((_vm.dealers), function(value, index) {
+    return _c('div', {
+      key: index,
+      staticClass: ["inner"]
+    }, [_c('a', {
+      staticClass: ["a-link"],
+      attrs: {
+        "href": value.link
+      }
+    }, [_c('div', {
+      staticClass: ["item1"]
+    }, [_c('image', {
+      staticClass: ["logo-pic"],
+      attrs: {
+        "src": value.logo
+      }
+    }), _c('text', {
+      staticClass: ["supervise"]
+    }, [_vm._v(_vm._s(value.status))])]), _c('div', {
+      staticClass: ["item2"]
+    }, [_c('text', {
+      staticClass: ["dea-tit"]
+    }, [_vm._v(_vm._s(value.name))]), _c('div', {
+      staticClass: ["score-box"]
+    }, [_c('text', {
+      staticClass: ["eye"]
+    }, [_vm._v("天眼评分")]), _c('text', {
+      staticClass: ["score"]
+    }, [_vm._v(_vm._s(value.score))])]), _c('text', {
+      staticClass: ["info"]
+    }, [_vm._v(_vm._s(value.descript))])])])])
+  }))
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('scroller', {
     staticClass: ["detail-wrapper"]
-  }, [_c('div', {
-    staticClass: ["slid-box"]
-  }, [_c('slider', {
-    staticClass: ["slider"],
+  }, [(_vm.marketDetail.imageList) ? _c('bannerScroll', {
     attrs: {
-      "interval": "3000",
-      "autoPlay": "true",
-      "index": 0
+      "banLists": _vm.marketDetail.imageList,
+      "bgColor": '#666666'
     }
-  }, _vm._l((_vm.imageList), function(item, index) {
-    return _c('div', {
-      key: index,
-      staticClass: ["frame"]
-    }, [_c('image', {
-      staticClass: ["image"],
-      attrs: {
-        "resize": "contain",
-        "src": item
-      }
-    }), _c('text', {
-      staticClass: ["index"]
-    }, [_vm._v(_vm._s(index + 1))])])
-  })), _c('div', {
-    staticClass: ["num-box"]
-  }, [_c('text', {
-    staticClass: ["nums"]
-  }, [_vm._v("/" + _vm._s(_vm.nums))])])]), _vm._m(0), _vm._m(1), _vm._m(2)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }) : _vm._e(), _c('div', {
     staticClass: ["tit-box"]
   }, [_c('div', {
     staticClass: ["tit-row1"]
   }, [_c('text', {
-    staticClass: ["label"]
-  }, [_vm._v("IB")]), _c('text', {
+    staticClass: ["label"],
+    style: {
+      backgroundColor: _vm.marketDetail.content.color
+    }
+  }, [_vm._v(_vm._s(_vm.marketDetail.content.icon))]), _c('text', {
     staticClass: ["tit-tit"]
-  }, [_vm._v("百利好，诚招个人和公司代理")])]), _c('text', {
+  }, [_vm._v(_vm._s(_vm.marketDetail.content.title))])]), _c('text', {
     staticClass: ["tit-row2"]
-  }, [_vm._v("田先生 | 2018年11月15日 15:09")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }, [_vm._v(_vm._s(_vm.marketDetail.content.descript))])]), _c('div', {
     staticClass: ["con-box"]
-  }, [_c('div', {
-    staticClass: ["row"]
-  }, [_c('text', {
-    staticClass: ["txt1"]
-  }, [_vm._v("EA交易：")]), _c('text', {
-    staticClass: ["txt2"]
-  }, [_vm._v("不支持")])]), _c('div', {
-    staticClass: ["row"]
-  }, [_c('text', {
-    staticClass: ["txt1"]
-  }, [_vm._v("外佣：")]), _c('text', {
-    staticClass: ["txt2", "red"]
-  }, [_vm._v("支持（0-200美金）")])]), _c('div', {
-    staticClass: ["row"]
-  }, [_c('text', {
-    staticClass: ["txt1"]
-  }, [_vm._v("返佣手续费：")]), _c('text', {
-    staticClass: ["txt2"]
-  }, [_vm._v("支持（0-200美金）")])]), _c('div', {
-    staticClass: ["row"]
-  }, [_c('text', {
-    staticClass: ["txt1"]
-  }, [_vm._v("返佣周期：")]), _c('text', {
-    staticClass: ["txt2"]
-  }, [_vm._v("日结")])]), _c('div', {
-    staticClass: ["row"]
-  }, [_c('text', {
-    staticClass: ["txt1"]
-  }, [_vm._v("商品说明：")]), _c('text', {
-    staticClass: ["txt2", "more-txt"]
-  }, [_vm._v("支持刷单秒单，佣金日返，出入金无障，提供跟单社区，和搭建平台 支付通道。")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }, _vm._l((_vm.marketDetail.content.character), function(value, key, index) {
+    return _c('div', {
+      key: index,
+      staticClass: ["row"]
+    }, [_c('text', {
+      staticClass: ["txt1"]
+    }, [_vm._v(_vm._s(key) + "：")]), _c('text', {
+      class: ['txt2', {
+        'red': key == '外佣',
+        'more-tx': key == '商品说明'
+      }]
+    }, [_vm._v(_vm._s(value))])])
+  })), _c('div', {
     staticClass: ["dealer-box"]
   }, [_c('text', {
     staticClass: ["dealer-b"]
-  }, [_vm._v("交易商信息")]), _c('div', {
-    staticClass: ["inner"]
-  }, [_c('div', {
-    staticClass: ["item1"]
-  }, [_c('image', {
-    staticClass: ["logo-pic"],
+  }, [_vm._v("交易商信息")]), _c('dealer', {
     attrs: {
-      "src": "http://eimgjys.fxeye.com/logo/0001460706/FXT_0001460706_400x226.png_fxeye-template-global"
+      "dealers": _vm.marketDetail.dealers
     }
-  }), _c('text', {
-    staticClass: ["supervise"]
-  }, [_vm._v("监管中")])]), _c('div', {
-    staticClass: ["item2"]
-  }, [_c('text', {
-    staticClass: ["dea-tit"]
-  }, [_vm._v("ORIGIN ECN")]), _c('div', {
-    staticClass: ["score-box"]
-  }, [_c('text', {
-    staticClass: ["eye"]
-  }, [_vm._v("天眼评分")]), _c('text', {
-    staticClass: ["score"]
-  }, [_vm._v("4.35")])]), _c('text', {
-    staticClass: ["info"]
-  }, [_vm._v("10-15年 | 澳大利亚监管 | 投资咨询")])])]), _c('div', {
-    staticClass: ["inner"]
-  }, [_c('div', {
-    staticClass: ["item1"]
-  }, [_c('image', {
-    staticClass: ["logo-pic"],
-    attrs: {
-      "src": "http://eimgjys.fxeye.com/logo/0001460706/FXT_0001460706_400x226.png_fxeye-template-global"
-    }
-  }), _c('text', {
-    staticClass: ["supervise"]
-  }, [_vm._v("监管中")])]), _c('div', {
-    staticClass: ["item2"]
-  }, [_c('text', {
-    staticClass: ["dea-tit"]
-  }, [_vm._v("ORIGIN ECN")]), _c('div', {
-    staticClass: ["score-box"]
-  }, [_c('text', {
-    staticClass: ["eye"]
-  }, [_vm._v("天眼评分")]), _c('text', {
-    staticClass: ["score"]
-  }, [_vm._v("4.35")])]), _c('text', {
-    staticClass: ["info"]
-  }, [_vm._v("10-15年 | 澳大利亚监管 | 投资咨询")])])])])
-}]}
+  })], 1)], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 
 /***/ })
