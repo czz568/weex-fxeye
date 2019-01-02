@@ -1,12 +1,15 @@
 <template>
     <div class="wrapper">
+        <!-- 顶部搜索 -->
         <router-view></router-view>
         <scroller class="mian-scroller">
             <refresh @refresh="onrefresh" class="refresh" :display="refreshing ? 'show' : 'hide'">
                 <loading-indicator class="indicator"></loading-indicator>
                     <text class="indicator-text">释放即可刷新</text>
             </refresh>
+            <!-- 顶部导航 -->
             <topnav></topnav>
+            <!-- 交易商列表 -->
             <marketlist></marketlist>
             <loading class="loading" @loading="onloading" :display="loadinging ? 'show' : 'hide'">
                 <loading-indicator class="indicator"></loading-indicator>

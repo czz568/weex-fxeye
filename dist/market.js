@@ -89,7 +89,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\GitHub\\fxeye-weex\\src\\components\\Search.vue"
+__vue_options__.__file = "G:\\github\\weex-fxeye\\src\\components\\Search.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__._scopeId = "data-v-d9499c90"
@@ -140,9 +140,9 @@ module.exports = new _vueRouter2.default({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/**
-  * vue-router v3.0.1
-  * (c) 2017 Evan You
+/*!
+  * vue-router v3.0.2
+  * (c) 2018 Evan You
   * @license MIT
   */
 /*  */
@@ -163,8 +163,15 @@ function isError (err) {
   return Object.prototype.toString.call(err).indexOf('Error') > -1
 }
 
+function extend (a, b) {
+  for (var key in b) {
+    a[key] = b[key];
+  }
+  return a
+}
+
 var View = {
-  name: 'router-view',
+  name: 'RouterView',
   functional: true,
   props: {
     name: {
@@ -178,6 +185,7 @@ var View = {
     var parent = ref.parent;
     var data = ref.data;
 
+    // used by devtools to display a router-view badge
     data.routerView = true;
 
     // directly use parent context's createElement() function
@@ -252,7 +260,7 @@ var View = {
 
     return h(component, data, children)
   }
-};
+}
 
 function resolveProps (route, config) {
   switch (typeof config) {
@@ -273,13 +281,6 @@ function resolveProps (route, config) {
         );
       }
   }
-}
-
-function extend (to, from) {
-  for (var key in from) {
-    to[key] = from[key];
-  }
-  return to
 }
 
 /*  */
@@ -379,7 +380,6 @@ function stringifyQuery (obj) {
 }
 
 /*  */
-
 
 var trailingSlashRE = /\/?$/;
 
@@ -523,7 +523,7 @@ var toTypes = [String, Object];
 var eventTypes = [String, Array];
 
 var Link = {
-  name: 'router-link',
+  name: 'RouterLink',
   props: {
     to: {
       type: toTypes,
@@ -558,17 +558,17 @@ var Link = {
     var globalExactActiveClass = router.options.linkExactActiveClass;
     // Support global empty active class
     var activeClassFallback = globalActiveClass == null
-            ? 'router-link-active'
-            : globalActiveClass;
+      ? 'router-link-active'
+      : globalActiveClass;
     var exactActiveClassFallback = globalExactActiveClass == null
-            ? 'router-link-exact-active'
-            : globalExactActiveClass;
+      ? 'router-link-exact-active'
+      : globalExactActiveClass;
     var activeClass = this.activeClass == null
-            ? activeClassFallback
-            : this.activeClass;
+      ? activeClassFallback
+      : this.activeClass;
     var exactActiveClass = this.exactActiveClass == null
-            ? exactActiveClassFallback
-            : this.exactActiveClass;
+      ? exactActiveClassFallback
+      : this.exactActiveClass;
     var compareTarget = location.path
       ? createRoute(null, location, null, router)
       : route;
@@ -608,7 +608,6 @@ var Link = {
       if (a) {
         // in case the <a> is a static node
         a.isStatic = false;
-        var extend = _Vue.util.extend;
         var aData = a.data = extend({}, a.data);
         aData.on = on;
         var aAttrs = a.data.attrs = extend({}, a.data.attrs);
@@ -621,7 +620,7 @@ var Link = {
 
     return h(this.tag, data, this.$slots.default)
   }
-};
+}
 
 function guardEvent (e) {
   // don't redirect with control keys
@@ -699,8 +698,8 @@ function install (Vue) {
     get: function get () { return this._routerRoot._route }
   });
 
-  Vue.component('router-view', View);
-  Vue.component('router-link', Link);
+  Vue.component('RouterView', View);
+  Vue.component('RouterLink', Link);
 
   var strats = Vue.config.optionMergeStrategies;
   // use the same hook merging strategy for route hooks
@@ -1210,7 +1209,6 @@ function pathToRegexp (path, keys, options) {
 
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
-
 pathToRegexp_1.parse = parse_1;
 pathToRegexp_1.compile = compile_1;
 pathToRegexp_1.tokensToFunction = tokensToFunction_1;
@@ -1406,7 +1404,6 @@ function normalizePath (path, parent, strict) {
 
 /*  */
 
-
 function normalizeLocation (
   raw,
   current,
@@ -1421,9 +1418,9 @@ function normalizeLocation (
 
   // relative params
   if (!next.path && next.params && current) {
-    next = assign({}, next);
+    next = extend({}, next);
     next._normalized = true;
-    var params = assign(assign({}, current.params), next.params);
+    var params = extend(extend({}, current.params), next.params);
     if (current.name) {
       next.name = current.name;
       next.params = params;
@@ -1461,14 +1458,8 @@ function normalizeLocation (
   }
 }
 
-function assign (a, b) {
-  for (var key in b) {
-    a[key] = b[key];
-  }
-  return a
-}
-
 /*  */
+
 
 
 function createMatcher (
@@ -1538,8 +1529,8 @@ function createMatcher (
   ) {
     var originalRedirect = record.redirect;
     var redirect = typeof originalRedirect === 'function'
-        ? originalRedirect(createRoute(record, location, null, router))
-        : originalRedirect;
+      ? originalRedirect(createRoute(record, location, null, router))
+      : originalRedirect;
 
     if (typeof redirect === 'string') {
       redirect = { path: redirect };
@@ -1653,7 +1644,8 @@ function matchRoute (
     var key = regex.keys[i - 1];
     var val = typeof m[i] === 'string' ? decodeURIComponent(m[i]) : m[i];
     if (key) {
-      params[key.name] = val;
+      // Fix #1994: using * with props: true generates a param named 0
+      params[key.name || 'pathMatch'] = val;
     }
   }
 
@@ -1666,12 +1658,12 @@ function resolveRecordPath (path, record) {
 
 /*  */
 
-
 var positionStore = Object.create(null);
 
 function setupScroll () {
   // Fix for #1585 for Firefox
-  window.history.replaceState({ key: getStateKey() }, '');
+  // Fix for #2195 Add optional third attribute to workaround a bug in safari https://bugs.webkit.org/show_bug.cgi?id=182678
+  window.history.replaceState({ key: getStateKey() }, '', window.location.href.replace(window.location.origin, ''));
   window.addEventListener('popstate', function (e) {
     saveScrollPosition();
     if (e.state && e.state.key) {
@@ -1702,7 +1694,7 @@ function handleScroll (
   // wait until re-render finishes before scrolling
   router.app.$nextTick(function () {
     var position = getScrollPosition();
-    var shouldScroll = behavior(to, from, isPop ? position : null);
+    var shouldScroll = behavior.call(router, to, from, isPop ? position : null);
 
     if (!shouldScroll) {
       return
@@ -2264,7 +2256,10 @@ function poll (
   key,
   isValid
 ) {
-  if (instances[key]) {
+  if (
+    instances[key] &&
+    !instances[key]._isBeingDestroyed // do not reuse being destroyed instance
+  ) {
     cb(instances[key]);
   } else if (isValid()) {
     setTimeout(function () {
@@ -2275,7 +2270,6 @@ function poll (
 
 /*  */
 
-
 var HTML5History = (function (History$$1) {
   function HTML5History (router, base) {
     var this$1 = this;
@@ -2283,8 +2277,9 @@ var HTML5History = (function (History$$1) {
     History$$1.call(this, router, base);
 
     var expectScroll = router.options.scrollBehavior;
+    var supportsScroll = supportsPushState && expectScroll;
 
-    if (expectScroll) {
+    if (supportsScroll) {
       setupScroll();
     }
 
@@ -2300,7 +2295,7 @@ var HTML5History = (function (History$$1) {
       }
 
       this$1.transitionTo(location, function (route) {
-        if (expectScroll) {
+        if (supportsScroll) {
           handleScroll(router, route, current, true);
         }
       });
@@ -2354,7 +2349,7 @@ var HTML5History = (function (History$$1) {
 }(History));
 
 function getLocation (base) {
-  var path = window.location.pathname;
+  var path = decodeURI(window.location.pathname);
   if (base && path.indexOf(base) === 0) {
     path = path.slice(base.length);
   }
@@ -2362,7 +2357,6 @@ function getLocation (base) {
 }
 
 /*  */
-
 
 var HashHistory = (function (History$$1) {
   function HashHistory (router, base, fallback) {
@@ -2473,7 +2467,7 @@ function getHash () {
   // consistent across browsers - Firefox will pre-decode it!
   var href = window.location.href;
   var index = href.indexOf('#');
-  return index === -1 ? '' : href.slice(index + 1)
+  return index === -1 ? '' : decodeURI(href.slice(index + 1))
 }
 
 function getUrl (path) {
@@ -2500,7 +2494,6 @@ function replaceHash (path) {
 }
 
 /*  */
-
 
 var AbstractHistory = (function (History$$1) {
   function AbstractHistory (router, base) {
@@ -2559,6 +2552,8 @@ var AbstractHistory = (function (History$$1) {
 }(History));
 
 /*  */
+
+
 
 var VueRouter = function VueRouter (options) {
   if ( options === void 0 ) options = {};
@@ -2756,7 +2751,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.0.1';
+VueRouter.version = '3.0.2';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -2861,7 +2856,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('image', {
     staticClass: ["btn-search"],
     attrs: {
-      "src": "http://192.168.1.102:8081/src/assets/images/icon_search.png"
+      "src": "http://192.168.1.14:8081/src/assets/images/icon_search.png"
     }
   }), _c('input', {
     staticClass: ["input-txt"],
@@ -2875,7 +2870,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('image', {
     staticClass: ["btn-write"],
     attrs: {
-      "src": "http://192.168.1.102:8081/src/assets/images/icon_write.png"
+      "src": "http://192.168.1.14:8081/src/assets/images/icon_write.png"
     }
   }), _c('text', {
     staticClass: ["publish-txt"]
@@ -2884,7 +2879,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('image', {
     staticClass: ["pencil"],
     attrs: {
-      "src": "http://192.168.1.102:8081/src/assets/images/icon_write.png"
+      "src": "http://192.168.1.14:8081/src/assets/images/icon_write.png"
     }
   })])])
 }]}
@@ -2917,7 +2912,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\GitHub\\fxeye-weex\\src\\components\\MarketItem.vue"
+__vue_options__.__file = "G:\\github\\weex-fxeye\\src\\components\\MarketItem.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__._scopeId = "data-v-3c85cc02"
@@ -2968,7 +2963,7 @@ module.exports = {
     "paddingLeft": "8",
     "paddingRight": "8",
     "height": "33",
-    "lineHeight": "33",
+    "lineHeight": "35",
     "marginRight": "12",
     "fontSize": "27",
     "backgroundColor": "#f7842f",
@@ -2979,8 +2974,7 @@ module.exports = {
   "title-txt": {
     "fontSize": "29",
     "color": "#333333",
-    "flex": 1,
-    "height": "72"
+    "flex": 1
   },
   "text": {
     "marginBottom": "2",
@@ -2996,7 +2990,7 @@ module.exports = {
   },
   "user": {
     "flexDirection": "row",
-    "paddingTop": "20",
+    "paddingTop": "10",
     "alignItems": "center",
     "height": "45"
   },
@@ -3019,9 +3013,11 @@ module.exports = {
     "borderStyle": "solid",
     "borderColor": "#47a6ef",
     "borderRadius": "3",
-    "fontSize": "19",
+    "fontSize": "18",
     "marginRight": "8",
-    "textAlign": "center"
+    "textAlign": "center",
+    "height": "25",
+    "lineHeight": "25"
   },
   "icon-pic": {
     "width": "25",
@@ -3033,12 +3029,14 @@ module.exports = {
     "height": "25"
   },
   "item-r": {
-    "width": "179"
+    "paddingTop": "10",
+    "width": "179",
+    "alignSelf": "center"
   },
   "poster": {
     "width": "179",
     "height": "134",
-    "marginBottom": "24"
+    "marginBottom": "15"
   },
   "time": {
     "fontSize": "19",
@@ -3106,7 +3104,6 @@ module.exports = {
 			var nativeBase;
 			var native;
 			if (WXEnvironment.platform.toLowerCase() === 'ios') {
-				modal.toast({ message: WXEnvironment.platform, duration: 10 });
 				nativeBase = 'file://assets/dist/';
 				native = nativeBase + toUrl + ".js";
 			} else if (WXEnvironment.platform.toLowerCase() === 'android') {
@@ -3131,7 +3128,7 @@ module.exports = {
 	},
 	created: function created() {
 		var self = this;
-		var curLocation = 'http://192.168.1.102:8081';
+		var curLocation = 'http://192.168.1.14:8081';
 		var marketUrl = curLocation + '/src/assets/data/marketlist.json';
 		stream.fetch({
 			method: 'GET',
@@ -3196,7 +3193,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('image', {
       staticClass: ["icon-img"],
       attrs: {
-        "src": "http://192.168.1.102:8081/src/assets/images/icon_vip.png"
+        "src": "http://192.168.1.14:8081/src/assets/images/icon_vip.png"
       }
     })]) : _vm._e(), _c('text', {
       staticClass: ["job"]
@@ -3205,21 +3202,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('image', {
       staticClass: ["icon-img"],
       attrs: {
-        "src": "http://192.168.1.102:8081/src/assets/images/icon_phone.png"
+        "src": "http://192.168.1.14:8081/src/assets/images/icon_phone.png"
       }
     })]) : _vm._e(), (item.iswechat) ? _c('div', {
       staticClass: ["icon-pic"]
     }, [_c('image', {
       staticClass: ["icon-img"],
       attrs: {
-        "src": "http://192.168.1.102:8081/src/assets/images/icon_wechat.png"
+        "src": "http://192.168.1.14:8081/src/assets/images/icon_wechat.png"
       }
     })]) : _vm._e(), (item.isqq) ? _c('div', {
       staticClass: ["icon-pic"]
     }, [_c('image', {
       staticClass: ["icon-img"],
       attrs: {
-        "src": "http://192.168.1.102:8081/src/assets/images/icon_qq.png"
+        "src": "http://192.168.1.14:8081/src/assets/images/icon_qq.png"
       }
     })]) : _vm._e()])]), _c('div', {
       staticClass: ["item-r"]
@@ -3287,7 +3284,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\GitHub\\fxeye-weex\\src\\market.vue"
+__vue_options__.__file = "G:\\github\\weex-fxeye\\src\\market.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 __vue_options__._scopeId = "data-v-4813d742"

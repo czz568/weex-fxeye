@@ -22696,7 +22696,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.detail-wrapper[data-v-58f27fbd]{\n\t\twidth:10rem;\n}\n.tit-box[data-v-58f27fbd]{\n  \t\tpadding: 0.33333rem 0.4rem;\n\t\tborder-bottom-width: 0.26667rem;\n\t\tborder-color: #f5f5f5;\n\t\tborder-style: solid;\n}\n.tit-row1[data-v-58f27fbd]{\n  \t\tflex-direction: row;\n  \t\tmargin-bottom: 0.26667rem;\n}\n.label[data-v-58f27fbd]{\n  \t\tpadding:0 0.13333rem;\n  \t\tbackground-color: #f7842f;\n  \t\tcolor: #fff;\n  \t\tfont-size: 0.34667rem;\n  \t\theight: 0.45333rem;\n  \t\tline-height: 0.45333rem;\n  \t\tmargin-right: 0.13333rem;\n  \t\tborder-radius: 0.06667rem;\n}\n.tit-tit[data-v-58f27fbd]{\n  \t\tflex: 1;\n  \t\tfont-size: 0.42667rem;\n  \t\tcolor: #333333;\n}\n.tit-row2[data-v-58f27fbd]{\n  \t\tfont-size: 0.26667rem;\n  \t\tcolor: #999999;\n}\n.con-box[data-v-58f27fbd]{\n  \t\tpadding: 0.33333rem 0.4rem 0;\n\t\tborder-bottom-width: 0.26667rem;\n\t\tborder-color: #f5f5f5;\n\t\tborder-style: solid;\n}\n.row[data-v-58f27fbd]{\n  \t\tflex-direction: row;\n  \t\tmargin-bottom: 0.34667rem;\n}\n.txt1[data-v-58f27fbd]{\n  \t\twidth: 2.29333rem;\n  \t\tfont-size: 0.37333rem;\n  \t\tcolor: #333333;\n}\n.txt2[data-v-58f27fbd]{\n  \t\tflex: 1;\n  \t\tfont-size: 0.37333rem;\n  \t\tcolor: #666666;\n}\n.red[data-v-58f27fbd]{\n  \t\tcolor: #FC341A;\n}\n.more-txt[data-v-58f27fbd]{\n  \t\theight: 0.98667rem;\n}\n.dealer-box[data-v-58f27fbd]{\n  \t\tpadding: 0 0.4rem;\n}\n.dealer-b[data-v-58f27fbd]{\n\t\tpadding-top: 0.21333rem;\n\t\theight: 0.61333rem;\n\t\tline-height:0.4rem;\n\t\tfont-size: 0.37333rem;\n  \t\tcolor: #333333;\n}\n\t\n", ""]);
+exports.push([module.i, "\n.detail-wrapper[data-v-58f27fbd]{\n\t\twidth:10rem;\n}\n.tit-box[data-v-58f27fbd]{\n  \t\tpadding: 0.33333rem 0.4rem;\n\t\tborder-bottom-width: 0.26667rem;\n\t\tborder-color: #f5f5f5;\n\t\tborder-style: solid;\n}\n.tit-row1[data-v-58f27fbd]{\n  \t\tflex-direction: row;\n  \t\tmargin-bottom: 0.26667rem;\n}\n.label[data-v-58f27fbd]{\n  \t\tpadding:0 0.13333rem;\n  \t\tbackground-color: #f7842f;\n  \t\tcolor: #fff;\n  \t\tfont-size: 0.34667rem;\n  \t\theight: 0.45333rem;\n  \t\tline-height: 0.45333rem;\n  \t\tmargin-right: 0.13333rem;\n  \t\tborder-radius: 0.06667rem;\n}\n.tit-tit[data-v-58f27fbd]{\n  \t\tflex: 1;\n  \t\tfont-size: 0.42667rem;\n  \t\tcolor: #333333;\n}\n.tit-row2[data-v-58f27fbd]{\n  \t\tfont-size: 0.26667rem;\n  \t\tcolor: #999999;\n}\n.con-box[data-v-58f27fbd]{\n  \t\tpadding: 0.33333rem 0.4rem 0;\n\t\tborder-bottom-width: 0.26667rem;\n\t\tborder-color: #f5f5f5;\n\t\tborder-style: solid;\n}\n.row[data-v-58f27fbd]{\n  \t\tflex-direction: row;\n  \t\tmargin-bottom: 0.34667rem;\n}\n.txt1[data-v-58f27fbd]{\n  \t\twidth: 2.29333rem;\n  \t\tfont-size: 0.37333rem;\n  \t\tcolor: #333333;\n}\n.txt2[data-v-58f27fbd]{\n  \t\tflex: 1;\n  \t\tfont-size: 0.37333rem;\n  \t\tcolor: #666666;\n}\n.red[data-v-58f27fbd]{\n  \t\tcolor: #FC341A;\n}\n/* .more-txt{\n  \t\theight: 74px;\n  \t} */\n.dealer-box[data-v-58f27fbd]{\n  \t\tpadding: 0 0.4rem;\n}\n.dealer-b[data-v-58f27fbd]{\n\t\tpadding-top: 0.21333rem;\n\t\theight: 0.61333rem;\n\t\tline-height:0.4rem;\n\t\tfont-size: 0.37333rem;\n  \t\tcolor: #333333;\n}\n\t\n", ""]);
 
 // exports
 
@@ -22755,7 +22755,11 @@ exports.default = {
 	},
 	data: function data() {
 		return {
-			marketDetail: null
+			marketDetail: {
+				imageList: [],
+				content: {},
+				dealers: {}
+			}
 		};
 	},
 
@@ -23106,7 +23110,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.a-link[data-v-33b69c19]{\n        flex-direction: row;\n}\n.inner[data-v-33b69c19]{\n\t\tflex-direction: row;\n\t\theight: 2.24rem;\n\t\tpadding: 0.37333rem 0;\n\t\tborder-color: #e5e5e5;\n\t\tborder-style: solid;\n\t\tborder-bottom-width: 1px;\n}\n.item1[data-v-33b69c19]{\n\t\tmargin-right: 0.26667rem;\n\t\twidth: 2.66667rem;\n\t\theight: 1.49333rem;\n\t\tborder-width: 1px;\n\t\tborder-color: #e5e5e5;\n\t\tborder-style: solid;\n\t\tposition: relative;\n        overflow: hidden;\n}\n.logo-pic[data-v-33b69c19]{\n\t\twidth: 2.64rem;\n\t\theight: 1.46667rem;\n}\n.supervise[data-v-33b69c19]{\n\t\tposition: absolute;\n\t\tleft: 0;\n\t\ttop:0;\n\t\tpadding: 0 0.08rem;\n\t\theight: 0.32rem;\n\t\tline-height: 0.32rem;\n\t\tcolor: #fff;\n\t\tfont-size: 0.24rem;\n\t\tbackground-color: #7fb759;\n}\n.dea-tit[data-v-33b69c19]{\n\t\tfont-size: 0.32rem;\n\t\tcolor: #43464f;\n\t\tmargin-bottom: 0.21333rem;\n}\n.score-box[data-v-33b69c19]{\n\t\tflex-direction: row;\n\t\tjustify-content: flex-start;\n\t\tmargin-bottom: 0.21333rem;\n}\n.eye[data-v-33b69c19]{\n\t\tpadding: 0 0.08rem;\n\t\theight: 0.32rem;\n\t\tline-height: 0.32rem;\n\t\tcolor: #fff;\n\t\tfont-size: 0.24rem;\n\t\tbackground-color: #f16816;\n}\n.score[data-v-33b69c19]{\n\t\tfont-size: 0.24rem;\n\t\tcolor: #f16816;\n\t\tpadding: 0 0.08rem;\n\t\theight: 0.32rem;\n\t\tline-height: 0.32rem;\n\t\tborder-style: solid;\n\t\tborder-width: 1px;\n\t\tborder-color: #f16816;\n}\n.info[data-v-33b69c19]{\n\t\tfont-size: 0.26667rem;\n\t\tcolor: #a3a7b2;\n}\n", ""]);
+exports.push([module.i, "\n.a-link[data-v-33b69c19]{\n        flex-direction: row;\n}\n.inner[data-v-33b69c19]{\n\t\tflex-direction: row;\n\t\theight: 2.24rem;\n\t\tpadding: 0.37333rem 0;\n\t\tborder-color: #e5e5e5;\n\t\tborder-style: solid;\n\t\tborder-bottom-width: 1px;\n}\n.item1[data-v-33b69c19]{\n\t\tmargin-right: 0.26667rem;\n\t\tborder-width: 1px;\n\t\tborder-color: #e5e5e5;\n\t\tborder-style: solid;\n\t\tposition: relative;\n        overflow: hidden;\n        justify-content: center;\n        align-items: center;\n}\n.logo-pic[data-v-33b69c19]{\n\t\twidth: 2.61333rem;\n\t\theight: 1.44rem;\n\t\tresize: contain;\n}\n.supervise[data-v-33b69c19]{\n\t\tposition: absolute;\n\t\tleft: 0;\n\t\ttop:0;\n\t\tpadding: 0 0.08rem;\n\t\theight: 0.32rem;\n\t\tline-height: 0.32rem;\n\t\tcolor: #fff;\n\t\tfont-size: 0.24rem;\n\t\tbackground-color: #7fb759;\n}\n.dea-tit[data-v-33b69c19]{\n\t\tfont-size: 0.32rem;\n\t\tcolor: #43464f;\n\t\tmargin-bottom: 0.21333rem;\n}\n.score-box[data-v-33b69c19]{\n\t\tflex-direction: row;\n\t\tjustify-content: flex-start;\n\t\tmargin-bottom: 0.21333rem;\n}\n.eye[data-v-33b69c19]{\n\t\tpadding: 0 0.08rem;\n\t\theight: 0.32rem;\n\t\tline-height: 0.32rem;\n\t\tcolor: #fff;\n\t\tfont-size: 0.24rem;\n\t\tbackground-color: #f16816;\n}\n.score[data-v-33b69c19]{\n\t\tfont-size: 0.24rem;\n\t\tcolor: #f16816;\n\t\tpadding: 0 0.08rem;\n\t\theight: 0.32rem;\n\t\tline-height: 0.32rem;\n\t\tborder-style: solid;\n\t\tborder-width: 1px;\n\t\tborder-color: #f16816;\n}\n.info[data-v-33b69c19]{\n\t\tfont-size: 0.26667rem;\n\t\tcolor: #a3a7b2;\n}\n", ""]);
 
 // exports
 
@@ -23121,6 +23125,7 @@ exports.push([module.i, "\n.a-link[data-v-33b69c19]{\n        flex-direction: ro
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
 //
 //
 //

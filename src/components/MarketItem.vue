@@ -11,11 +11,11 @@
 				<div class="user">
 					<image class="photo" :src="item.photo"></image>
 					<text class="name">{{item.nickname}}</text>
-					<div class="icon-pic" v-if="item.isvip"><image class="icon-img" src="http://192.168.1.102:8081/src/assets/images/icon_vip.png"></image></div>
+					<div class="icon-pic" v-if="item.isvip"><image class="icon-img" src="http://192.168.1.14:8081/src/assets/images/icon_vip.png"></image></div>
 					<text class="job">{{item.identity}}</text>
-					<div class="icon-pic" v-if="item.isphone"><image class="icon-img" src="http://192.168.1.102:8081/src/assets/images/icon_phone.png"></image></div>
-					<div class="icon-pic" v-if="item.iswechat"><image class="icon-img" src="http://192.168.1.102:8081/src/assets/images/icon_wechat.png"></image></div>
-					<div class="icon-pic" v-if="item.isqq"><image class="icon-img" src="http://192.168.1.102:8081/src/assets/images/icon_qq.png"></image></div>
+					<div class="icon-pic" v-if="item.isphone"><image class="icon-img" src="http://192.168.1.14:8081/src/assets/images/icon_phone.png"></image></div>
+					<div class="icon-pic" v-if="item.iswechat"><image class="icon-img" src="http://192.168.1.14:8081/src/assets/images/icon_wechat.png"></image></div>
+					<div class="icon-pic" v-if="item.isqq"><image class="icon-img" src="http://192.168.1.14:8081/src/assets/images/icon_qq.png"></image></div>
 					
 				</div>
 			</div>
@@ -48,7 +48,6 @@
 		        var nativeBase;  
 		        var native;
 		        if (WXEnvironment.platform.toLowerCase() === 'ios') {  
-		        	modal.toast({message:WXEnvironment.platform,duration:10});
 		            nativeBase = 'file://assets/dist/';  
 		            native = nativeBase + toUrl + ".js";  
 		        } else if (WXEnvironment.platform.toLowerCase() === 'android') {  
@@ -73,7 +72,7 @@
 		},
 		created:function(){
 			var self = this;
-			var curLocation = 'http://192.168.1.102:8081';
+			var curLocation = 'http://192.168.1.14:8081';
 			var marketUrl = curLocation+'/src/assets/data/marketlist.json';
 			stream.fetch({
 				method:'GET',
@@ -116,7 +115,7 @@
 		padding-left:8px;
 		padding-right:8px;
 		height: 33px;
-		line-height: 33px;
+		line-height: 35px;
 		margin-right: 12px;
 		font-size: 27px;
 		background-color: #f7842f;
@@ -128,7 +127,7 @@
 		font-size: 29px;
 		color: #333333;
 		flex: 1;
-		height: 72px;
+		/* height: 72px; */
 	}
 	.text{
 		margin-bottom: 2px;
@@ -144,7 +143,7 @@
 	}
 	.user{
 		flex-direction: row;
-		padding-top: 20px;
+		padding-top: 10px;
 		align-items: center;
 		height: 45px;
 	}
@@ -167,9 +166,11 @@
 		border-style: solid;
 		border-color: #47a6ef;
 		border-radius: 3px;
-		font-size: 19px;
+		font-size: 18px;
 		margin-right: 8px;
 		text-align: center;
+		height: 25px;
+		line-height: 25px;
 	}
 	.icon-pic{
 		width: 25px;
@@ -182,12 +183,14 @@
 	}
 	
 	.item-r{
+		padding-top: 10px;
 		width:179px;
+		align-self: center;
 	}
 	.poster{
 		width: 179px;
 		height: 134px;
-		margin-bottom: 24px;
+		margin-bottom: 15px;
 	}
 	.time{
 		font-size: 19px;

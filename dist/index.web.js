@@ -22647,7 +22647,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.list-box[data-v-fbe5fee2]{\n\twidth: 10rem;\n\tpadding-top: 0.26667rem;\n\tbackground-color: #f5f5f5;\n}\n.list-item[data-v-fbe5fee2]{\n\twidth: 10rem;\n\tflex-direction: row;\n\tpadding: 0.33333rem 0.4rem 0.4rem;\n\tjustify-content: space-between;\n\tmargin-bottom: 0.26667rem;\n\tbackground-color: #fff;\n}\n.item-l[data-v-fbe5fee2]{\n\tflex: 1;\n\tmargin-right: 0.33333rem;\n}\n.title-box[data-v-fbe5fee2]{\n\tflex-direction: row;\n\tmargin-bottom: 0.13333rem;\n}\n.label[data-v-fbe5fee2]{\n\tborder-radius: 0.06667rem;\n\tpadding-left:0.10667rem;\n\tpadding-right:0.10667rem;\n\theight: 0.44rem;\n\tline-height: 0.44rem;\n\tmargin-right: 0.16rem;\n\tfont-size: 0.36rem;\n\tbackground-color: #f7842f;\n\tcolor: #fff;\n\tmargin-top: 0.02667rem;\n\tjustify-content: center;\n}\n.title-txt[data-v-fbe5fee2]{\n\tfont-size: 0.38667rem;\n\tcolor: #333333;\n\tflex: 1;\n\theight: 0.96rem;\n}\n.text[data-v-fbe5fee2]{\n\tmargin-bottom: 0.02667rem;\n\tflex-direction: row;\n}\n.price[data-v-fbe5fee2]{\n\tcolor: #666666;\n\tfont-size: 0.34667rem;\n}\n.red[data-v-fbe5fee2]{\n\tcolor: #fc341a;\n\tfont-size: 0.34667rem;\n}\n.user[data-v-fbe5fee2]{\n\tflex-direction: row;\n\tpadding-top: 0.26667rem;\n\talign-items: center;\n\theight: 0.6rem;\n}\n.photo[data-v-fbe5fee2]{\n\twidth: 0.33333rem;\n\theight: 0.33333rem;\n\tborder-radius: 0.17333rem;\n\tmargin-right: 0.10667rem;\n}\n.name[data-v-fbe5fee2]{\n\tfont-size: 0.34667rem;\n\tcolor: #666666;\n\tmargin-right: 0.16rem;\n}\n.job[data-v-fbe5fee2]{\n\tcolor: #47a6ef; \n\tpadding-left: 0.10667rem;\n\tpadding-right: 0.10667rem;\n\tborder-width: 1px;\n\tborder-style: solid;\n\tborder-color: #47a6ef;\n\tborder-radius: 0.04rem;\n\tfont-size: 0.25333rem;\n\tmargin-right: 0.10667rem;\n\ttext-align: center;\n}\n.icon-pic[data-v-fbe5fee2]{\n\twidth: 0.33333rem;\n\theight: 0.33333rem;\n\tmargin-right: 0.10667rem;\n}\n.icon-img[data-v-fbe5fee2]{\n\twidth: 0.33333rem;\n\theight: 0.33333rem;\n}\n.item-r[data-v-fbe5fee2]{\n\twidth:2.38667rem;\n}\n.poster[data-v-fbe5fee2]{\n\twidth: 2.38667rem;\n\theight: 1.78667rem;\n\tmargin-bottom: 0.32rem;\n}\n.time[data-v-fbe5fee2]{\n\tfont-size: 0.25333rem;\n\tcolor: #999999;\n\ttext-align: right;\n}\n", ""]);
+exports.push([module.i, "\n.list-box[data-v-fbe5fee2]{\n\twidth: 10rem;\n\tpadding-top: 0.26667rem;\n\tbackground-color: #f5f5f5;\n}\n.list-item[data-v-fbe5fee2]{\n\twidth: 10rem;\n\tflex-direction: row;\n\tpadding: 0.33333rem 0.4rem 0.4rem;\n\tjustify-content: space-between;\n\tmargin-bottom: 0.26667rem;\n\tbackground-color: #fff;\n}\n.item-l[data-v-fbe5fee2]{\n\tflex: 1;\n\tmargin-right: 0.33333rem;\n}\n.title-box[data-v-fbe5fee2]{\n\tflex-direction: row;\n\tmargin-bottom: 0.13333rem;\n}\n.label[data-v-fbe5fee2]{\n\tborder-radius: 0.06667rem;\n\tpadding-left:0.10667rem;\n\tpadding-right:0.10667rem;\n\theight: 0.44rem;\n\tline-height: 0.46667rem;\n\tmargin-right: 0.16rem;\n\tfont-size: 0.36rem;\n\tbackground-color: #f7842f;\n\tcolor: #fff;\n\tmargin-top: 0.02667rem;\n\tjustify-content: center;\n}\n.title-txt[data-v-fbe5fee2]{\n\tfont-size: 0.38667rem;\n\tcolor: #333333;\n\tflex: 1;\n\t/* height: 72px; */\n}\n.text[data-v-fbe5fee2]{\n\tmargin-bottom: 0.02667rem;\n\tflex-direction: row;\n}\n.price[data-v-fbe5fee2]{\n\tcolor: #666666;\n\tfont-size: 0.34667rem;\n}\n.red[data-v-fbe5fee2]{\n\tcolor: #fc341a;\n\tfont-size: 0.34667rem;\n}\n.user[data-v-fbe5fee2]{\n\tflex-direction: row;\n\tpadding-top: 0.13333rem;\n\talign-items: center;\n\theight: 0.6rem;\n}\n.photo[data-v-fbe5fee2]{\n\twidth: 0.33333rem;\n\theight: 0.33333rem;\n\tborder-radius: 0.17333rem;\n\tmargin-right: 0.10667rem;\n}\n.name[data-v-fbe5fee2]{\n\tfont-size: 0.34667rem;\n\tcolor: #666666;\n\tmargin-right: 0.16rem;\n}\n.job[data-v-fbe5fee2]{\n\tcolor: #47a6ef; \n\tpadding-left: 0.10667rem;\n\tpadding-right: 0.10667rem;\n\tborder-width: 1px;\n\tborder-style: solid;\n\tborder-color: #47a6ef;\n\tborder-radius: 0.04rem;\n\tfont-size: 0.24rem;\n\tmargin-right: 0.10667rem;\n\ttext-align: center;\n\theight: 0.33333rem;\n\tline-height: 0.33333rem;\n}\n.icon-pic[data-v-fbe5fee2]{\n\twidth: 0.33333rem;\n\theight: 0.33333rem;\n\tmargin-right: 0.10667rem;\n}\n.icon-img[data-v-fbe5fee2]{\n\twidth: 0.33333rem;\n\theight: 0.33333rem;\n}\n.item-r[data-v-fbe5fee2]{\n\tpadding-top: 0.13333rem;\n\twidth:2.38667rem;\n\talign-self: center;\n}\n.poster[data-v-fbe5fee2]{\n\twidth: 2.38667rem;\n\theight: 1.78667rem;\n\tmargin-bottom: 0.2rem;\n}\n.time[data-v-fbe5fee2]{\n\tfont-size: 0.25333rem;\n\tcolor: #999999;\n\ttext-align: right;\n}\n", ""]);
 
 // exports
 
@@ -22711,11 +22711,11 @@ module.exports = {
 			var nativeBase;
 			var native;
 			if (WXEnvironment.platform.toLowerCase() === 'ios') {
-				modal.toast({ message: WXEnvironment.platform, duration: 10 });
-				nativeBase = 'file://assets/dist/';
+				nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
 				native = nativeBase + toUrl + ".js";
 			} else if (WXEnvironment.platform.toLowerCase() === 'android') {
-				nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
+				modal.toast({ message: bundleUrl, duration: 10 });
+				nativeBase = 'file://assets/';
 				native = nativeBase + toUrl + ".js";
 			} else {
 				var host = 'localhost:8081';
@@ -23029,7 +23029,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.mian-scroller[data-v-4848bc39]{\n  margin-top: 1.09333rem;\n}\n.refresh[data-v-4848bc39] {\n  width: 10rem;\n  height: 1.33333rem;\n  flex-direction: row;\n  justify-content:center;\n  align-items:center;\n}\n.loading[data-v-4848bc39]{\n  width: 10rem;\n  height: 1.33333rem;\n  flex-direction: row;\n  justify-content:center;\n  align-items:center;\n  background-color: #fff;\n}\n.indicator[data-v-4848bc39] {\n  height: 0.53333rem;\n  width: 0.53333rem;\n  color: #47a6ef;\n}\n.indicator-text[data-v-4848bc39] {\n  color: #47a6ef;\n  font-size: 0.34667rem;\n  text-align: center;\n}\n.pencil-box[data-v-4848bc39]{\n  position: fixed;\n  right: 0.4rem;\n  bottom: 1.65333rem;\n  width: 0.8rem;\n  height: 0.8rem;\n  border-radius: 0.4rem;\n  background-color: rgba(24,115,185,0.6);\n  justify-content: center;\n  align-items: center;\n  text-align:center;\n}\n.pencil[data-v-4848bc39]{\n  width: 0.37333rem;\n  height: 0.37333rem;\n}\n", ""]);
+exports.push([module.i, "\n.mian-scroller[data-v-4848bc39]{\n  margin-top: 1.09333rem;\n}\n.refresh[data-v-4848bc39] {\n  width: 10rem;\n  height: 1.33333rem;\n  flex-direction: row;\n  justify-content:center;\n  align-items:center;\n  background-color: #fff;\n}\n.loading[data-v-4848bc39]{\n  width: 10rem;\n  height: 1.33333rem;\n  flex-direction: row;\n  justify-content:center;\n  align-items:center;\n  background-color: #fff;\n}\n.indicator[data-v-4848bc39] {\n  height: 0.53333rem;\n  width: 0.53333rem;\n  color: #47a6ef;\n}\n.indicator-text[data-v-4848bc39] {\n  color: #47a6ef;\n  font-size: 0.34667rem;\n  text-align: center;\n}\n.pencil-box[data-v-4848bc39]{\n  position: fixed;\n  right: 0.4rem;\n  bottom: 1.65333rem;\n  width: 0.8rem;\n  height: 0.8rem;\n  border-radius: 0.4rem;\n  background-color: rgba(24,115,185,0.6);\n  justify-content: center;\n  align-items: center;\n  text-align:center;\n}\n.pencil[data-v-4848bc39]{\n  width: 0.37333rem;\n  height: 0.37333rem;\n}\n", ""]);
 
 // exports
 
@@ -23077,7 +23077,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 
 var modal = weex.requireModule('modal');
 exports.default = {
@@ -23089,9 +23088,7 @@ exports.default = {
   data: function data() {
     return {
       refreshing: false,
-      refreshtext: '释放即可刷新',
-      loadinging: false,
-      loadingtext: '释放立即加载'
+      loadinging: false
     };
   },
 
@@ -23364,7 +23361,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "weex-type": "div"
     }
-  }, [_c('scroller', {
+  }, [_c('router-view'), _vm._v(" "), _c('scroller', {
     staticClass: "mian-scroller",
     attrs: {}
   }, [_c('refresh', {
@@ -23387,7 +23384,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "weex-type": "text"
     }
-  }, [_vm._v(_vm._s(_vm.refreshtext))])], 1), _vm._v(" "), _c('topnav'), _vm._v(" "), _c('marketlist'), _vm._v(" "), _c('loading', {
+  }, [_vm._v("释放即可刷新")])], 1), _vm._v(" "), _c('topnav'), _vm._v(" "), _c('marketlist'), _vm._v(" "), _c('loading', {
     staticClass: "loading",
     attrs: {
       "display": _vm.loadinging ? 'show' : 'hide',
@@ -23407,19 +23404,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "weex-type": "text"
     }
-  }, [_vm._v(_vm._s(_vm.loadingtext))])], 1)], 1), _vm._v(" "), _c('router-view'), _vm._v(" "), _c('div', {
-    staticClass: "pencil-box weex-ct weex-div",
-    attrs: {
-      "weex-type": "div"
-    }
-  }, [_c('figure', {
-    staticClass: "pencil weex-el weex-image",
-    attrs: {
-      "src": "http://192.168.1.14:8081/src/assets/images/icon_write.png",
-      "data-img-src": "http://192.168.1.14:8081/src/assets/images/icon_write.png",
-      "weex-type": "image"
-    }
-  })])], 1)
+  }, [_vm._v("释放即可加载")])], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

@@ -33,7 +33,11 @@
 		},
 		data(){
 			return {
-				marketDetail:null,
+				marketDetail:{
+					imageList:[],
+					content:{},
+					dealers:{}
+				},
 			}
 		},
 		methods:{
@@ -56,7 +60,7 @@
 		},
 		created:function(){
 			var self = this;
-			var curLocation = 'http://192.168.1.102:8081';
+			var curLocation = 'http://192.168.1.14:8081';
 			var detailUrl = curLocation+'/src/assets/data/marketDetail.json';
 			stream.fetch({
 				method:"GET",
@@ -129,9 +133,9 @@
   	.red{
   		color: #FC341A;
   	}
-  	.more-txt{
+  	/* .more-txt{
   		height: 74px;
-  	}
+  	} */
   	.dealer-box{
   		padding: 0 30px;
   		
