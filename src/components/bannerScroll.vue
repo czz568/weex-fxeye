@@ -1,12 +1,11 @@
 <template>
     <div class="slid-box">
-        <slider class="slider" interval="3000" auto-play="true">
+        <slider class="slider" interval="3000" auto-play="true"  @change="onSliderChange">
             <div class="frame" :style="{backgroundColor:bgColor}" v-for="(item, index) in banLists" :key="index" >
                 <image class="image" resize="contain" :src="item"></image>
-				<text class="index">{{index+1}}</text>
             </div>
         </slider>
-        <div class="num-box"><text class="nums">/{{banLists.length}}</text></div>
+        <div class="num-box"><text class="nums">{{currentIndex+1}}/{{banLists.length}}</text></div>
     </div>
 </template>
 
@@ -58,6 +57,7 @@
 </style>
 
 <script>
+    const modal = weex.requireModule('modal');
     export default{
         props:{
             banLists:{//ban图片
@@ -67,6 +67,16 @@
                 type:String,
                 default:"#333333"
             }
+        },
+        data(){
+          return {
+            currentIndex: 0 
+          }
+        },
+        methods:{
+          onSliderChange(e){
+            this.currentIndex=e.index;
+          }
         }
     }
 </script>

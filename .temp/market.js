@@ -8,5 +8,4 @@ const router = require('./router');
 const App = require('@/market.vue');
 /* eslint-disable no-new */
 new Vue(Vue.util.extend({el: '#root', router}, App));
-router.push('/');
 

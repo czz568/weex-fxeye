@@ -117,21 +117,13 @@ var _vueRouter = __webpack_require__(2);
 
 var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-var _Search = __webpack_require__(0);
-
-var _Search2 = _interopRequireDefault(_Search);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*global Vue*/
-Vue.use(_vueRouter2.default);
+Vue.use(_vueRouter2.default); /*global Vue*/
+
 
 module.exports = new _vueRouter2.default({
-  routes: [{
-    path: '/',
-    name: 'Search',
-    component: _Search2.default
-  }]
+  routes: []
 });
 
 /***/ }),
@@ -3052,8 +3044,6 @@ module.exports = {
 "use strict";
 
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 //
 //
 //
@@ -3083,64 +3073,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var stream = weex.requireModule('stream');
-var modal = weex.requireModule('modal');
-var navigator = weex.requireModule('navigator');
 module.exports = {
-	data: function data() {
-		return {
-			marketLists: null
-		};
+	props: {
+		marketLists: { type: Array, default: function _default() {
+				return [];
+			} }
 	},
 	methods: {
-		jump: function jump(event) {
-			navigator.push({
-				url: this.getJumpBaseUrl('inner'), animated: "true"
+		jump: function jump(id, url) {
+			this.$emit('jump', {
+				id: id,
+				url: url
 			});
-		},
-		getJumpBaseUrl: function getJumpBaseUrl(toUrl) {
-			var bundleUrl = weex.config.bundleUrl;
-			bundleUrl = new String(bundleUrl);
-			var nativeBase;
-			var native;
-			if (WXEnvironment.platform.toLowerCase() === 'ios') {
-				nativeBase = 'file://assets/dist/';
-				native = nativeBase + toUrl + ".js";
-			} else if (WXEnvironment.platform.toLowerCase() === 'android') {
-				nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
-				native = nativeBase + toUrl + ".js";
-			} else {
-				var host = 'localhost:8081';
-				var matches = /\/\/([^\/]+?)\//.exec(bundleUrl);
-				if (matches && matches.length >= 2) {
-					host = matches[1];
-				}
-				if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object') {
-					nativeBase = 'http://' + host + '/';
-				} else {
-					nativeBase = 'http://' + host + '/';
-				}
-
-				native = nativeBase + toUrl + ".html";
-			}
-			return native;
 		}
-	},
-	created: function created() {
-		var self = this;
-		var curLocation = 'http://192.168.1.14:8081';
-		var marketUrl = curLocation + '/src/assets/data/marketlist.json';
-		stream.fetch({
-			method: 'GET',
-			url: marketUrl,
-			type: 'json'
-		}, function (ret) {
-			if (!ret.ok) {
-				modal.toast({ message: '加载失败', duration: 1 });
-			} else {
-				self.marketLists = ret.data;
-			}
-		});
 	}
 };
 
@@ -3156,7 +3101,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index,
       staticClass: ["list-item"],
       on: {
-        "click": _vm.jump
+        "click": function($event) {
+          _vm.jump(index, 'inner')
+        }
       }
     }, [_c('div', {
       staticClass: ["item-l"]
@@ -3244,7 +3191,9 @@ module.exports.render._withStripped = true
 /* weex initialized here, please do not move this line */
 var router = __webpack_require__(1);
 var App = __webpack_require__(10);
+
 /* eslint-disable no-new */
+
 new Vue(Vue.util.extend({ el: '#root', router: router }, App));
 router.push('/');
 
@@ -3352,8 +3301,20 @@ module.exports = {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+
+var _util = __webpack_require__(37);
+
+var _util2 = _interopRequireDefault(_util);
+
+var _index = __webpack_require__(36);
+
+var _index2 = _interopRequireDefault(_index);
+
+var _Search = __webpack_require__(0);
+
+var _Search2 = _interopRequireDefault(_Search);
 
 var _TopNav = __webpack_require__(13);
 
@@ -3385,41 +3346,68 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
+
+var navigator = weex.requireModule('navigator');
 
 var modal = weex.requireModule('modal');
 exports.default = {
-  name: 'App',
-  components: {
-    topnav: _TopNav2.default,
-    marketlist: _MarketItem2.default
-  },
-  data: function data() {
-    return {
-      refreshing: false,
-      loadinging: false
-    };
-  },
-
-  methods: {
-    onrefresh: function onrefresh(event) {
-      var self = this;
-      self.refreshing = true;
-      setTimeout(function () {
-        self.refreshing = false;
-        modal.toast({ message: "刷新成功", duration: 1 });
-      }, 1E3);
+    name: 'App',
+    components: {
+        search: _Search2.default,
+        topnav: _TopNav2.default,
+        marketlist: _MarketItem2.default
     },
-    onloading: function onloading(event) {
-      var self = this;
-      self.loadinging = true;
-      setTimeout(function () {
-        self.loadinging = false;
-        modal.toast({ message: "加载成功", duration: 1 });
-      }, 1E3);
+    mixins: [_index2.default],
+    data: function data() {
+        return {
+            refreshing: false,
+            loadinging: false,
+            navs: [],
+            marketLists: []
+        };
+    },
+
+    methods: {
+        onrefresh: function onrefresh(event) {
+            var self = this;
+            self.refreshing = true;
+            setTimeout(function () {
+                self.refreshing = false;
+                modal.toast({ message: "刷新成功", duration: 1 });
+            }, 1E3);
+        },
+        onloading: function onloading(event) {
+            var self = this;
+            self.loadinging = true;
+            setTimeout(function () {
+                self.loadinging = false;
+                modal.toast({ message: "加载成功", duration: 1 });
+            }, 1E3);
+        },
+        urlJump: function urlJump(_result) {
+            var url = _util2.default.getJumpBaseUrl(_result.url);
+            navigator.push({
+                url: url, animated: "true"
+            });
+        }
+    },
+    created: function created() {
+        var self = this;
+        this.GET('marketlist.json', function (res) {
+            if (!res.ok) {
+                modal.toast({ message: '加载失败', duration: 1 });
+            } else {
+                self.marketLists = res.data;
+            }
+        });
+        this.GET('nav.json', function (res) {
+            if (!res.ok) {
+                modal.toast({ message: '加载失败', duration: 1 });
+            } else {
+                self.navs = res.data;
+            }
+        });
     }
-  }
 };
 
 /***/ }),
@@ -3502,8 +3490,6 @@ module.exports = {
 "use strict";
 
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 //
 //
 //
@@ -3539,66 +3525,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var stream = weex.requireModule('stream');
-var navigator = weex.requireModule('navigator');
 var modal = weex.requireModule('modal');
-
 module.exports = {
-	data: function data() {
-		return {
-			navs: null
-		};
+	props: {
+		navs: { type: Array, default: function _default() {
+				return [];
+			} }
 	},
 	methods: {
-		jump: function jump(event) {
-			navigator.push({
-				url: this.getJumpBaseUrl('market'), animated: "true"
+		jump: function jump(id, url) {
+			this.$emit('jump', {
+				id: id,
+				url: url
 			});
-		},
-		getJumpBaseUrl: function getJumpBaseUrl(toUrl) {
-			var bundleUrl = weex.config.bundleUrl;
-			bundleUrl = new String(bundleUrl);
-			var nativeBase;
-			var native;
-			if (WXEnvironment.platform.toLowerCase() === 'ios') {
-				modal.toast({ message: WXEnvironment.platform, duration: 10 });
-				nativeBase = 'file://assets/dist/';
-				native = nativeBase + toUrl + ".js";
-			} else if (WXEnvironment.platform.toLowerCase() === 'android') {
-				nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
-				native = nativeBase + toUrl + ".js";
-			} else {
-				var host = 'localhost:8081';
-				var matches = /\/\/([^\/]+?)\//.exec(bundleUrl);
-				if (matches && matches.length >= 2) {
-					host = matches[1];
-				}
-				if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object') {
-					nativeBase = 'http://' + host + '/';
-				} else {
-					nativeBase = 'http://' + host + '/';
-				}
-
-				native = nativeBase + toUrl + ".html";
-			}
-			return native;
 		}
-	},
-	created: function created() {
-		var self = this;
-		var curLocation = 'http://192.168.1.14:8081';
-		var dataUrl = curLocation + '/src/assets/data/nav.json';
-		stream.fetch({
-			method: 'GET',
-			url: dataUrl,
-			type: 'json'
-		}, function (ret) {
-			if (!ret.ok) {
-				alert("reauest failed");
-			} else {
-				self.navs = ret.data;
-			}
-		});
 	}
 };
 
@@ -3614,7 +3554,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index,
       staticClass: ["nav-item"],
       on: {
-        "click": _vm.jump
+        "click": function($event) {
+          _vm.jump(index, 'market')
+        }
       }
     }, [_c('image', {
       staticClass: ["nav-icon"],
@@ -3635,7 +3577,7 @@ module.exports.render._withStripped = true
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: ["wrapper"]
-  }, [_c('router-view'), _c('scroller', {
+  }, [_c('search'), _c('scroller', {
     staticClass: ["mian-scroller"]
   }, [_c('refresh', {
     staticClass: ["refresh"],
@@ -3649,7 +3591,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: ["indicator"]
   }), _c('text', {
     staticClass: ["indicator-text"]
-  }, [_vm._v("释放即可刷新")])]), _c('topnav'), _c('marketlist'), _c('loading', {
+  }, [_vm._v("释放即可刷新")])]), _c('topnav', {
+    attrs: {
+      "navs": _vm.navs
+    },
+    on: {
+      "jump": _vm.urlJump
+    }
+  }), _c('marketlist', {
+    attrs: {
+      "marketLists": _vm.marketLists
+    },
+    on: {
+      "jump": _vm.urlJump
+    }
+  }), _c('loading', {
     staticClass: ["loading"],
     attrs: {
       "display": _vm.loadinging ? 'show' : 'hide'
@@ -3664,6 +3620,101 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("释放即可加载")])])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
+
+/***/ }),
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var stream = weex.requireModule('stream');
+exports.default = {
+    methods: {
+        jump: function jump(to) {
+            if (this.$router) {
+                this.$router.push(to);
+            }
+        },
+        isIpx: function isIpx() {
+            return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
+        },
+        GET: function GET(api, callback) {
+            return stream.fetch({
+                method: 'GET',
+                type: 'json',
+                url: 'http://192.168.1.14:8081/src/assets/data/' + api
+            }, callback);
+        }
+    }
+};
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var utilFunc = {
+    getJumpBaseUrl: function getJumpBaseUrl(toUrl) {
+        var bundleUrl = weex.config.bundleUrl;
+        bundleUrl = new String(bundleUrl);
+        var nativeBase;
+        var native;
+        if (WXEnvironment.platform.toLowerCase() === 'ios') {
+            nativeBase = 'file://assets/dist/';
+            native = nativeBase + toUrl + ".js";
+        } else if (WXEnvironment.platform.toLowerCase() === 'android') {
+            nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
+            native = nativeBase + toUrl + ".js";
+        } else {
+            var host = 'localhost:8081';
+            var matches = /\/\/([^\/]+?)\//.exec(bundleUrl);
+            if (matches && matches.length >= 2) {
+                host = matches[1];
+            }
+            if ((typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object') {
+                nativeBase = 'http://' + host + '/';
+            } else {
+                nativeBase = 'http://' + host + '/';
+            }
+
+            native = nativeBase + toUrl + ".html";
+        }
+        return native;
+    }
+};
+
+exports.default = utilFunc;
 
 /***/ })
 /******/ ]);

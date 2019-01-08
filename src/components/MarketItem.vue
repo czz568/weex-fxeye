@@ -1,6 +1,6 @@
 <template>
 	<div class="list-box">
-		<div class="list-item" @click="jump" :key="index" v-for="(item,index) in marketLists">
+		<div class="list-item" @click="jump(index,'inner')" :key="index" v-for="(item,index) in marketLists">
 			<div class="item-l">
 				<div class="title-box">
 					<text class="label" v-bind:style="{backgroundColor:item.bgcolor}">{{item.label}}</text>
@@ -27,64 +27,17 @@
 	</div>
 </template>
 <script>
-	const stream = weex.requireModule('stream');
-	const modal = weex.requireModule('modal');
-	const navigator = weex.requireModule('navigator');
 	module.exports = {
-		data:function(){
-			return {
-				marketLists:null
-			}
+		props:{
+			marketLists:{type:Array,default:function(){return []}}
 		},
 		methods:{
-			jump(event){
-				navigator.push({
-					url:this.getJumpBaseUrl('inner'),animated:"true"
-				})
+			jump(id,url){
+				this.$emit('jump',{
+					id:id,
+					url:url
+				});
 			},
-			getJumpBaseUrl(toUrl) {  
-		        var bundleUrl = weex.config.bundleUrl;  
-		        bundleUrl = new String(bundleUrl);  
-		        var nativeBase;  
-		        var native;
-		        if (WXEnvironment.platform.toLowerCase() === 'ios') {  
-		            nativeBase = 'file://assets/dist/';  
-		            native = nativeBase + toUrl + ".js";  
-		        } else if (WXEnvironment.platform.toLowerCase() === 'android') {  
-		            nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);  
-		            native = nativeBase + toUrl + ".js";
-		        } else {  
-		            var host = 'localhost:8081';  
-		            var matches = /\/\/([^\/]+?)\//.exec(bundleUrl);  
-		            if (matches && matches.length >= 2) {  
-		                host = matches[1];  
-		            }  
-		            if (typeof window === 'object') {  
-		                nativeBase = 'http://' + host + '/';  
-		            } else {  
-		                nativeBase = 'http://' + host + '/';  
-		            }  
-		  
-		            native = nativeBase + toUrl + ".html";  
-		        }  
-		        return native;  
-		    } 
-		},
-		created:function(){
-			var self = this;
-			var curLocation = 'http://192.168.1.14:8081';
-			var marketUrl = curLocation+'/src/assets/data/marketlist.json';
-			stream.fetch({
-				method:'GET',
-				url:marketUrl,
-				type:'json',
-			},function(ret){
-				if (!ret.ok) {
-					modal.toast({message:'加载失败',duration: 1});
-				}else{
-					self.marketLists = ret.data;
-				}
-			})
 		}
 	}
 </script>

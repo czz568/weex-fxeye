@@ -66,47 +66,7 @@
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __vue_exports__, __vue_options__
-var __vue_styles__ = []
-
-/* styles */
-__vue_styles__.push(__webpack_require__(3)
-)
-
-/* template */
-var __vue_template__ = __webpack_require__(4)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "G:\\github\\weex-fxeye\\src\\components\\Search.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-d9499c90"
-__vue_options__.style = __vue_options__.style || {}
-__vue_styles__.forEach(function (module) {
-  for (var name in module) {
-    __vue_options__.style[name] = module[name]
-  }
-})
-if (typeof __register_static_styles__ === "function") {
-  __register_static_styles__(__vue_options__._scopeId, __vue_styles__)
-}
-
-module.exports = __vue_exports__
-
-
-/***/ }),
+/* 0 */,
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -117,21 +77,13 @@ var _vueRouter = __webpack_require__(2);
 
 var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-var _Search = __webpack_require__(0);
-
-var _Search2 = _interopRequireDefault(_Search);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*global Vue*/
-Vue.use(_vueRouter2.default);
+Vue.use(_vueRouter2.default); /*global Vue*/
+
 
 module.exports = new _vueRouter2.default({
-  routes: [{
-    path: '/',
-    name: 'Search',
-    component: _Search2.default
-  }]
+  routes: []
 });
 
 /***/ }),
@@ -2761,131 +2713,8 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = {
-  "search-wrapper": {
-    "position": "fixed",
-    "top": 0,
-    "width": "750",
-    "height": "82",
-    "backgroundColor": "#1a8ad0",
-    "flexDirection": "row",
-    "paddingTop": 0,
-    "paddingRight": "30",
-    "paddingBottom": 0,
-    "paddingLeft": "30",
-    "justifyContent": "space-between",
-    "alignItems": "center"
-  },
-  "page-name": {
-    "fontSize": "30",
-    "color": "#ffffff",
-    "marginRight": "26"
-  },
-  "input-box": {
-    "flex": 1,
-    "height": "46",
-    "paddingLeft": "56",
-    "backgroundColor": "rgba(0,0,0,0.1)",
-    "position": "relative",
-    "borderRadius": "28",
-    "justifyContent": "center"
-  },
-  "btn-search": {
-    "position": "absolute",
-    "width": "26",
-    "height": "26",
-    "left": "16",
-    "top": "10"
-  },
-  "input-txt": {
-    "fontSize": "22",
-    "color": "#ffffff",
-    "backgroundColor": "rgba(0,0,0,0)",
-    "height": "46",
-    "placeholderColor": "rgba(255, 255, 255,0.7)"
-  },
-  "publish-box": {
-    "flexDirection": "row",
-    "justifyContent": "flex-end",
-    "alignItems": "center",
-    "height": "82",
-    "marginLeft": "30"
-  },
-  "btn-write": {
-    "width": "27",
-    "height": "27",
-    "marginRight": "8"
-  },
-  "publish-txt": {
-    "fontSize": "26",
-    "color": "#ffffff"
-  },
-  "pencil-box": {
-    "position": "fixed",
-    "right": "30",
-    "bottom": "124",
-    "width": "60",
-    "height": "60",
-    "borderRadius": "30",
-    "backgroundColor": "rgba(24,115,185,0.6)",
-    "justifyContent": "center",
-    "alignItems": "center"
-  },
-  "pencil": {
-    "width": "28",
-    "height": "28"
-  }
-}
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: ["search-wrapper"]
-  }, [_c('text', {
-    staticClass: ["page-name"]
-  }, [_vm._v("天眼集市")]), _c('div', {
-    staticClass: ["input-box"]
-  }, [_c('image', {
-    staticClass: ["btn-search"],
-    attrs: {
-      "src": "http://192.168.1.14:8081/src/assets/images/icon_search.png"
-    }
-  }), _c('input', {
-    staticClass: ["input-txt"],
-    attrs: {
-      "placeholder": "外贸届的58同城",
-      "type": "text",
-      "disabled": "false"
-    }
-  })]), _c('div', {
-    staticClass: ["publish-box"]
-  }, [_c('image', {
-    staticClass: ["btn-write"],
-    attrs: {
-      "src": "http://192.168.1.14:8081/src/assets/images/icon_write.png"
-    }
-  }), _c('text', {
-    staticClass: ["publish-txt"]
-  }, [_vm._v("发布")])])]), _c('div', {
-    staticClass: ["pencil-box"]
-  }, [_c('image', {
-    staticClass: ["pencil"],
-    attrs: {
-      "src": "http://192.168.1.14:8081/src/assets/images/icon_write.png"
-    }
-  })])])
-}]}
-module.exports.render._withStripped = true
-
-/***/ }),
+/* 3 */,
+/* 4 */,
 /* 5 */,
 /* 6 */,
 /* 7 */,
@@ -2915,9 +2744,10 @@ module.exports.render._withStripped = true
 /* weex initialized here, please do not move this line */
 var router = __webpack_require__(1);
 var App = __webpack_require__(24);
+
 /* eslint-disable no-new */
+
 new Vue(Vue.util.extend({ el: '#root', router: router }, App));
-router.push('/');
 
 /***/ }),
 /* 24 */
@@ -3058,6 +2888,10 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _index = __webpack_require__(36);
+
+var _index2 = _interopRequireDefault(_index);
+
 var _bannerScroll = __webpack_require__(27);
 
 var _bannerScroll2 = _interopRequireDefault(_bannerScroll);
@@ -3068,7 +2902,7 @@ var _dealer2 = _interopRequireDefault(_dealer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
+var stream = weex.requireModule("stream"); //
 //
 //
 //
@@ -3091,7 +2925,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 
-var stream = weex.requireModule("stream");
 var modal = weex.requireModule('modal');
 exports.default = {
 	name: 'App',
@@ -3099,6 +2932,7 @@ exports.default = {
 		bannerScroll: _bannerScroll2.default,
 		dealer: _dealer2.default
 	},
+	mixins: [_index2.default],
 	data: function data() {
 		return {
 			marketDetail: {
@@ -3129,17 +2963,11 @@ exports.default = {
 	},
 	created: function created() {
 		var self = this;
-		var curLocation = 'http://192.168.1.14:8081';
-		var detailUrl = curLocation + '/src/assets/data/marketDetail.json';
-		stream.fetch({
-			method: "GET",
-			url: detailUrl,
-			type: "json"
-		}, function (ret) {
-			if (!ret.ok) {
+		this.GET('marketDetail.json', function (res) {
+			if (!res.ok) {
 				modal.toast({ message: "加载失败", duration: 1 });
 			} else {
-				self.marketDetail = ret.data;
+				self.marketDetail = res.data;
 			}
 		});
 	}
@@ -3309,8 +3137,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
 
+var modal = weex.requireModule('modal');
 exports.default = {
     props: {
         banLists: { //ban图片
@@ -3319,6 +3147,17 @@ exports.default = {
         bgColor: { //自定义背景色
             type: String,
             default: "#333333"
+        }
+    },
+    data: function data() {
+        return {
+            currentIndex: 0
+        };
+    },
+
+    methods: {
+        onSliderChange: function onSliderChange(e) {
+            this.currentIndex = e.index;
         }
     }
 };
@@ -3335,6 +3174,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "interval": "3000",
       "autoPlay": "true"
+    },
+    on: {
+      "change": _vm.onSliderChange
     }
   }, _vm._l((_vm.banLists), function(item, index) {
     return _c('div', {
@@ -3349,14 +3191,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "resize": "contain",
         "src": item
       }
-    }), _c('text', {
-      staticClass: ["index"]
-    }, [_vm._v(_vm._s(index + 1))])])
+    })])
   })), _c('div', {
     staticClass: ["num-box"]
   }, [_c('text', {
     staticClass: ["nums"]
-  }, [_vm._v("/" + _vm._s(_vm.banLists.length))])])])
+  }, [_vm._v(_vm._s(_vm.currentIndex + 1) + "/" + _vm._s(_vm.banLists.length))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 
@@ -3693,6 +3533,38 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var stream = weex.requireModule('stream');
+exports.default = {
+    methods: {
+        jump: function jump(to) {
+            if (this.$router) {
+                this.$router.push(to);
+            }
+        },
+        isIpx: function isIpx() {
+            return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
+        },
+        GET: function GET(api, callback) {
+            return stream.fetch({
+                method: 'GET',
+                type: 'json',
+                url: 'http://192.168.1.14:8081/src/assets/data/' + api
+            }, callback);
+        }
+    }
+};
 
 /***/ })
 /******/ ]);

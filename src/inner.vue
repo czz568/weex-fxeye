@@ -21,6 +21,7 @@
 	</scroller>
 </template>
 <script>
+	import mixins from './mixins/index.js'
 	import bannerScroll from './components/bannerScroll.vue'
 	import dealer from './components/dealer.vue'
 	const stream = weex.requireModule("stream")
@@ -31,6 +32,7 @@
 			bannerScroll,
 			dealer
 		},
+		mixins:[mixins],
 		data(){
 			return {
 				marketDetail:{
@@ -60,19 +62,13 @@
 		},
 		created:function(){
 			var self = this;
-			var curLocation = 'http://192.168.1.14:8081';
-			var detailUrl = curLocation+'/src/assets/data/marketDetail.json';
-			stream.fetch({
-				method:"GET",
-				url:detailUrl,
-				type:"json",
-			},function(ret){
-				if(!ret.ok){
+			this.GET('marketDetail.json',res=>{
+				if(!res.ok){
 					modal.toast({message:"加载失败",duration:1})
 				}else{
-					self.marketDetail = ret.data;
+					self.marketDetail = res.data;
 				}
-			})
+			});
 		}
 	}
 </script>
